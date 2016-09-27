@@ -21,7 +21,7 @@ export BASEDIR=`pwd`
 # some scripts or to prevent to check some criteria during the installation.
 #
 # Examples:
-#		export DONT_CHECK_ETH0=true
+#		export DONT_CLONE_GIT_REPO=true
 #		export DONT_RUN_HOST=true
 #		export DONT_RUN_JESSIE=true
 # -----------------------------------------------------------------------------
@@ -48,27 +48,6 @@ then
 	echo
 	echo "ERROR: unsupported OS release"
 	echo "Please, use '$RELEASE' on host machine"
-	exit 1
-fi
-
-# If eth0 has not a static IP or an IP from DHCP, cancel the installation.
-if [ "$DONT_CHECK_ETH0" != true \
-     -a -z "`egrep 'eth0\s+inet\s+(static|dhcp)' /etc/network/interfaces`" ]
-then
-	echo
-	echo "ERROR: 'eth0' has not a static IP or an IP from a DHCP server."
-	echo "Please, check /etc/network/interfaces for eth0 config"
-	exit 1
-fi
-
-# If the default gateway is not accesible via eth0, cancel the installation.
-if [ "$DONT_CHECK_GATEWAY" != true \
-     -a -z "`ip route | egrep 'default via .* dev eth0\s*$'`" ]
-then
-	echo
-	echo "ERROR: The default gateway is not accessible via eth0"
-	echo "The default gateway must be accessible via eth0 to complete"
-	echo "installation"
 	exit 1
 fi
 
@@ -99,6 +78,8 @@ if [ "$DONT_CLONE_GIT_REPO" != true ]
 then
 	apt-get update
 	apt-get install -y git
+
+	rm -rf $GIT_LOCAL_DIR
 	git clone --depth=1 $GIT_REPO $GIT_LOCAL_DIR
 fi
 
