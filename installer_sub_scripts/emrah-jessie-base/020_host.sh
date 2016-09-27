@@ -25,8 +25,8 @@ OLD_FILES="/root/$INSTALLER/old_files_$DATE"
 mkdir -p $OLD_FILES
 
 # backup
-cp /etc/apt/sources.list $OLD_FILES/
-cp /etc/crontab $OLD_FILES/
+[ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
+[ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
 
 # Network status
 echo "# ----- ip addr -----" >> $OLD_FILES/network.status
@@ -36,10 +36,13 @@ echo "# ----- ip route -----" >> $OLD_FILES/network.status
 ip route >> $OLD_FILES/network.status
 
 # iptables status
-echo "# ----- iptables -nv -L -----" >> $OLD_FILES/iptables.status
-iptables -nv -L >> $OLD_FILES/iptables.status
-echo "# ----- iptables -nv -L -t nat -----" >> $OLD_FILES/iptables.status
-iptables -nv -L -t nat >> $OLD_FILES/iptables.status
+if [ -n "`command -v iptables`" ]
+then
+	echo "# ----- iptables -nv -L -----" >> $OLD_FILES/iptables.status
+	iptables -nv -L >> $OLD_FILES/iptables.status
+	echo "# ----- iptables -nv -L -t nat -----" >> $OLD_FILES/iptables.status
+	iptables -nv -L -t nat >> $OLD_FILES/iptables.status
+fi
 
 # Process status
 echo "# ----- ps auxfw -----" >> $OLD_FILES/ps.status
@@ -82,6 +85,7 @@ debconf-set-selections <<< \
 
 # added packages
 apt-get install -y zsh tmux vim
+apt-get install -y cron
 DEBIAN_FRONTEND=noninteractive apt-get install -y iptables-persistent
 apt-get install -y bridge-utils
 apt-get install -y lxc debootstrap
