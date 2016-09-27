@@ -27,6 +27,7 @@ mkdir -p $OLD_FILES
 # backup
 [ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
 [ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
+[ -f /etc/resolv.conf ] && cp /etc/resolv.conf $OLD_FILES/
 
 # Network status
 echo "# ----- ip addr -----" >> $OLD_FILES/network.status
