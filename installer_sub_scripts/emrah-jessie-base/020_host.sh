@@ -11,7 +11,7 @@ set -e
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
-cd $BASEDIR/$GIT_LOCAL_DIR/installer/$INSTALLER
+cd $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER
 
 echo
 echo "-------------------- HOST --------------------"
