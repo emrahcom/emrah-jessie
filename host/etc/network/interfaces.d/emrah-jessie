@@ -1,0 +1,9 @@
+# private bridge for LXC containers
+auto ej0
+iface ej0 inet static
+address 172.22.22.1
+netmask 255.255.255.0
+bridge_ports none
+bridge_stp off
+bridge_fd 0
+bridge_maxwait 0
