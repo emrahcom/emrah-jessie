@@ -27,7 +27,6 @@ mkdir -p $OLD_FILES
 # backup
 [ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
 [ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
-[ -f /etc/resolv.conf ] && cp /etc/resolv.conf $OLD_FILES/
 
 # Network status
 echo "# ----- ip addr -----" >> $OLD_FILES/network.status
@@ -74,7 +73,6 @@ apt-get -y dist-upgrade
 apt-get purge -y nfs-common rpcbind installation-report reportbug
 apt-get purge -y tasksel tasksel-data task-english os-prober
 apt-get purge -y aptitude
-DEBIAN_FRONTEND=noninteractive apt-get purge -y resolvconf
 apt-get install -y openssh-server openssh-sftp-server
 apt-get autoremove -y
 
