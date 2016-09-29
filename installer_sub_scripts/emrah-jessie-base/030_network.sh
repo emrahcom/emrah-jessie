@@ -24,7 +24,8 @@ echo "-------------------- NETWORK --------------------"
 DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/emrah-jessie-hosts | \
              head -n1)
 HOST=${DNS_RECORD##*/}
-brctl addbr $BRIDGE
+EXISTS=$(brctl show | egrep "^$BRIDGE\s" || true)
+[ -z "$EXISTS" ] && brctl addbr $BRIDGE
 ifconfig $BRIDGE $HOST netmask 255.255.255.0 up
 
 # IP Forwarding
