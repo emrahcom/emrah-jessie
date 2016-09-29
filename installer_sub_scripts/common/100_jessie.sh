@@ -12,7 +12,7 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
-MACH="jessie"
+MACH="ej-jessie"
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/ej_hosts | \
 	     head -n1)
