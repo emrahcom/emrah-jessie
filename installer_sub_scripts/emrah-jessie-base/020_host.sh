@@ -27,7 +27,7 @@ mkdir -p $OLD_FILES
 # backup the files which will be changed
 [ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
 [ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
-[ -f /etc/network/interfaces] && cp /etc/network/interfaces $OLD_FILES/
+[ -f /etc/network/interfaces ] && cp /etc/network/interfaces $OLD_FILES/
 [ -f /root/.vimrc ] && cp /root/.vimrc $OLD_FILES/
 [ -f /root/.zshrc ] && cp /root/.zshrc $OLD_FILES/
 
