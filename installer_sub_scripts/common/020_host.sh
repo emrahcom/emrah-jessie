@@ -28,10 +28,11 @@ mkdir -p $OLD_FILES
 [ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
 [ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
 [ -f /etc/network/interfaces ] && cp /etc/network/interfaces $OLD_FILES/
+[ -f /root/.bashrc ] && cp /root/.bashrc $OLD_FILES/
 [ -f /root/.vimrc ] && cp /root/.vimrc $OLD_FILES/
 [ -f /root/.zshrc ] && cp /root/.zshrc $OLD_FILES/
 
-# Network status
+# network status
 echo "# ----- ip addr -----" >> $OLD_FILES/network.status
 ip addr >> $OLD_FILES/network.status
 echo >> $OLD_FILES/network.status
@@ -47,7 +48,7 @@ then
 	iptables -nv -L -t nat >> $OLD_FILES/iptables.status
 fi
 
-# Process status
+# process status
 echo "# ----- ps auxfw -----" >> $OLD_FILES/ps.status
 ps auxfw >> $OLD_FILES/ps.status
 
@@ -100,7 +101,7 @@ apt-get install -y openntpd dnsmasq
 
 
 # -----------------------------------------------------------------------------
-# CONFIGURATION
+# SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
 
 # changed/added system files
@@ -135,6 +136,7 @@ chsh -s /bin/zsh root
 mkdir -p /root/scripts
 
 # changed files
+cp ../../host/root/.bashrc /root/
 cp ../../host/root/.vimrc /root/
 cp ../../host/root/.zshrc /root/
 cp ../../host/root/scripts/update_debian.sh /root/scripts/

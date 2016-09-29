@@ -9,7 +9,7 @@ set -e
 echo
 echo "-------------------- STATUS --------------------"
 
-# Network
+# network
 ip addr
 echo
 
