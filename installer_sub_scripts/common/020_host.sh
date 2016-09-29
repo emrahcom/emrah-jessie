@@ -25,12 +25,7 @@ OLD_FILES="/root/emrah_jessie_old_files/$DATE"
 mkdir -p $OLD_FILES
 
 # backup the files which will be changed
-[ -f /etc/crontab ] && cp /etc/crontab $OLD_FILES/
-[ -f /etc/apt/sources.list ] && cp /etc/apt/sources.list $OLD_FILES/
 [ -f /etc/network/interfaces ] && cp /etc/network/interfaces $OLD_FILES/
-[ -f /root/.bashrc ] && cp /root/.bashrc $OLD_FILES/
-[ -f /root/.vimrc ] && cp /root/.vimrc $OLD_FILES/
-[ -f /root/.zshrc ] && cp /root/.zshrc $OLD_FILES/
 
 # network status
 echo "# ----- ip addr -----" >> $OLD_FILES/network.status
@@ -63,10 +58,7 @@ dpkg -l >> $OLD_FILES/dpkg.status
 # PACKAGES
 # -----------------------------------------------------------------------------
 
-# repo config
-cp ../../host/etc/apt/sources.list /etc/apt/
-cp ../../host/etc/apt/apt.conf.d/80recommends /etc/apt/apt.conf.d/
-
+# repo update & upgrade
 apt-get update
 apt-get autoclean
 apt-get purge -y apt-listchanges
@@ -74,9 +66,6 @@ apt-get -dy dist-upgrade
 apt-get -y dist-upgrade
 
 # removed packages
-apt-get purge -y nfs-common rpcbind installation-report reportbug
-apt-get purge -y tasksel tasksel-data task-english os-prober
-apt-get purge -y aptitude
 apt-get install -y openssh-server openssh-sftp-server
 apt-get autoremove -y
 
@@ -105,7 +94,7 @@ apt-get install -y openntpd dnsmasq
 # -----------------------------------------------------------------------------
 
 # changed/added system files
-cp ../../host/etc/crontab /etc/
+#cp ../../host/etc/crontab /etc/
 cp ../../host/etc/sysctl.d/emrah-jessie.conf /etc/sysctl.d/
 cp ../../host/etc/network/interfaces.d/emrah-jessie /etc/network/interfaces.d/
 cp ../../host/etc/dnsmasq.d/emrah-jessie-interface /etc/dnsmasq.d/
@@ -130,15 +119,11 @@ sysctl -p
 # -----------------------------------------------------------------------------
 # ROOT USER
 # -----------------------------------------------------------------------------
-chsh -s /bin/zsh root
 
 # changed directories
 mkdir -p /root/scripts
 
 # changed files
-cp ../../host/root/.bashrc /root/
-cp ../../host/root/.vimrc /root/
-cp ../../host/root/.zshrc /root/
 cp ../../host/root/scripts/update_debian.sh /root/scripts/
 cp ../../host/root/scripts/update_container.sh /root/scripts/
 cp ../../host/root/scripts/upgrade_debian.sh /root/scripts/
