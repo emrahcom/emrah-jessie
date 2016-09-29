@@ -62,14 +62,8 @@ dpkg -l >> $OLD_FILES/dpkg.status
 
 # repo update & upgrade
 apt-get update
-apt-get autoclean
-apt-get purge -y apt-listchanges
 apt-get -dy dist-upgrade
-apt-get -y dist-upgrade
-
-# removed packages
-apt-get install -y openssh-server openssh-sftp-server
-apt-get autoremove -y
+apt-get -y upgrade
 
 # debconf
 debconf-set-selections <<< \
@@ -78,15 +72,14 @@ debconf-set-selections <<< \
     'iptables-persistent iptables-persistent/autosave_v6 boolean false'
 
 # added packages
+DEBIAN_FRONTEND=noninteractive apt-get install -y iptables-persistent
 apt-get install -y zsh tmux vim
 apt-get install -y cron
-DEBIAN_FRONTEND=noninteractive apt-get install -y iptables-persistent
 apt-get install -y bridge-utils
 apt-get install -y lxc debootstrap
 apt-get install -y htop iotop bmon bwm-ng
 apt-get install -y iputils-ping fping wget curl whois dnsutils
-apt-get install -y bzip2 zip unzip patch tree
-apt-get install -y rsync ack-grep jq
+apt-get install -y bzip2 rsync ack-grep
 apt-get install -y openntpd dnsmasq
 
 
@@ -122,19 +115,19 @@ sysctl -p
 # ROOT USER
 # -----------------------------------------------------------------------------
 
-# changed directories
-mkdir -p /root/scripts
+# added directories
+mkdir -p /root/ej_scripts
 
-# changed files
-cp ../../host/root/scripts/update_debian.sh /root/scripts/
-cp ../../host/root/scripts/update_container.sh /root/scripts/
-cp ../../host/root/scripts/upgrade_debian.sh /root/scripts/
-cp ../../host/root/scripts/upgrade_container.sh /root/scripts/
-cp ../../host/root/scripts/upgrade_all.sh /root/scripts/
+# changed/added files
+cp ../../host/root/ej_scripts/update_debian.sh /root/ej_scripts/
+cp ../../host/root/ej_scripts/update_container.sh /root/ej_scripts/
+cp ../../host/root/ej_scripts/upgrade_debian.sh /root/ej_scripts/
+cp ../../host/root/ej_scripts/upgrade_container.sh /root/ej_scripts/
+cp ../../host/root/ej_scripts/upgrade_all.sh /root/ej_scripts/
 
 # file permissons
-chmod u+x /root/scripts/update_debian.sh
-chmod u+x /root/scripts/update_container.sh
-chmod u+x /root/scripts/upgrade_debian.sh
-chmod u+x /root/scripts/upgrade_container.sh
-chmod u+x /root/scripts/upgrade_all.sh
+chmod u+x /root/ej_scripts/update_debian.sh
+chmod u+x /root/ej_scripts/update_container.sh
+chmod u+x /root/ej_scripts/upgrade_debian.sh
+chmod u+x /root/ej_scripts/upgrade_container.sh
+chmod u+x /root/ej_scripts/upgrade_all.sh

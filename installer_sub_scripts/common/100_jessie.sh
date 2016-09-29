@@ -120,12 +120,12 @@ then
     chmod 600 $ROOTFS/root/.ssh/authorized_keys
 fi
 
-# scripts
-mkdir $ROOTFS/root/scripts
-cp root/scripts/update_debian.sh $ROOTFS/root/scripts/
-cp root/scripts/upgrade_debian.sh $ROOTFS/root/scripts/
-chmod 744 $ROOTFS/root/scripts/update_debian.sh
-chmod 744 $ROOTFS/root/scripts/upgrade_debian.sh
+# ej_scripts
+mkdir $ROOTFS/root/ej_scripts
+cp root/ej_scripts/update_debian.sh $ROOTFS/root/ej_scripts/
+cp root/ej_scripts/upgrade_debian.sh $ROOTFS/root/ej_scripts/
+chmod 744 $ROOTFS/root/ej_scripts/update_debian.sh
+chmod 744 $ROOTFS/root/ej_scripts/upgrade_debian.sh
 
 
 

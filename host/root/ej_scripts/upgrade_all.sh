@@ -3,9 +3,9 @@
 echo
 echo "<<< HOST >>>"
 echo
-/root/scripts/upgrade_debian.sh
+/root/ej_scripts/upgrade_debian.sh
 
 echo
 echo "<<< CONTAINERS >>>"
 echo
-/root/scripts/upgrade_container.sh
+/root/ej_scripts/upgrade_container.sh

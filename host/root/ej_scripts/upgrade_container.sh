@@ -6,5 +6,5 @@ do
 	echo "<<<" $mach ">>>"
 	echo
 
-	lxc-attach -n $mach -- /root/scripts/upgrade_debian.sh
+	lxc-attach -n $mach -- /root/ej_scripts/upgrade_debian.sh
 done
