@@ -39,7 +39,8 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -F
 iptables -F -t nat
 iptables -A INPUT -d $IP -i $PUBLIC_INTERFACE -j DROP
-iptables -t nat -A POSTROUTING -s 172.22.22.0/24 -o $BRIDGE -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.22.22.0/24 -o $PUBLIC_INTERFACE \
+    -j MASQUERADE
 
 # status
 ip addr
