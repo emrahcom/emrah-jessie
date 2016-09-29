@@ -25,6 +25,8 @@ OLD_FILES="/root/emrah_jessie_old_files/$DATE"
 mkdir -p $OLD_FILES
 
 # backup the files which will be changed
+[ -f /etc/iptables/rules.v4 ] && cp /etc/iptables/rules.v4 $OLD_FILES/
+[ -f /etc/iptables/rules.v6 ] && cp /etc/iptables/rules.v6 $OLD_FILES/
 [ -f /etc/network/interfaces ] && cp /etc/network/interfaces $OLD_FILES/
 
 # network status
