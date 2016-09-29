@@ -20,6 +20,13 @@ echo "-------------------- NETWORK --------------------"
 # NETWORK CONFIG
 # -----------------------------------------------------------------------------
 
+# public interface
+DEFAULT_ROUTE=$(ip route | egrep '^default ' | head -n1)
+PUBLIC_INTERFACE=${DEFAULT_ROUTE##*dev }
+PUBLIC_INTERFACE=${PUBLIC_INTERFACE/% */}
+echo PUBLIC_INTERFACE="$PUBLIC_INTERFACE" >> \
+    $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
+
 # IP address
 DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/emrah-jessie-hosts | \
              head -n1)
