@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # -----------------------------------------------------------------------------
-# EMRAH-JESSIE-BASE.SH
+# EJ-BASE.SH
 # -----------------------------------------------------------------------------
-export INSTALLER="emrah-jessie-base"
+export INSTALLER="ej-base"
 export CONFIG_FILE="${INSTALLER}.conf"
 export FREE_SPACE_NEEDED="1000000"
 

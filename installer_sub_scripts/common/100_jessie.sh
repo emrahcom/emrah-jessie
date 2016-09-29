@@ -14,7 +14,7 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 # -----------------------------------------------------------------------------
 MACH="jessie"
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/emrah-jessie-hosts | \
+DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/ej_hosts | \
 	     head -n1)
 IP=${DNS_RECORD##*/}
 echo JESSIE="$IP" >> \

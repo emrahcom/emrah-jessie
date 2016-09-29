@@ -11,7 +11,5 @@ echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
 echo '@                                                         @'
 echo '@                 INSTALLATION COMPLETED                  @'
 echo '@                                                         @'
-echo '@            Please, restart the host machine.            @'
-echo '@                                                         @'
 echo '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
 echo

@@ -28,7 +28,7 @@ echo PUBLIC_INTERFACE="$PUBLIC_INTERFACE" >> \
     $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 
 # IP address
-DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/emrah-jessie-hosts | \
+DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/ej_hosts | \
              head -n1)
 IP=${DNS_RECORD##*/}
 echo HOST="$IP" >> \
