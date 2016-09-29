@@ -89,7 +89,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y iptables-persistent
 apt-get install -y bridge-utils
 apt-get install -y lxc debootstrap
 apt-get install -y htop iotop bmon bwm-ng
-apt-get install -y iputils-ping fping whois curl dnsutils
+apt-get install -y iputils-ping fping wget curl whois dnsutils
 apt-get install -y bzip2 zip unzip patch tree
 apt-get install -y rsync ack-grep jq
 apt-get install -y openntpd dnsmasq
