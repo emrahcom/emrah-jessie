@@ -100,12 +100,25 @@ apt-get install -y openntpd dnsmasq
 # CONFIGURATION
 # -----------------------------------------------------------------------------
 
-# changed/added system files
-cp ../../host/etc/crontab /etc/
-cp ../../host/etc/sysctl.d/emrah-jessie.conf /etc/sysctl.d/
+# network interfaces and bridge
 cp ../../host/etc/network/interfaces.d/emrah-jessie /etc/network/interfaces.d/
+DNS_RECORD=$(grep 'address=/host/' ../../host/etc/dnsmasq.d/emrah-jessie-hosts
+             | head -n1)
+BRIDGE_IP=${DNS_RECORD##*/}
+brctl addbr ej0
+ifconfig ej0 $BRIDGE_IP netmask 255.255.255.0 up
 
+# dnsmasq
+cp ../../host/etc/dnsmasq.d/emrah-jessie-interface /etc/dnsmasq.d/
+cp ../../host/etc/dnsmasq.d/emrah-jessie-hosts /etc/dnsmasq.d/
+systemctl restart dnsmasq.service
+
+# sysctl.d
+cp ../../host/etc/sysctl.d/emrah-jessie.conf /etc/sysctl.d/
 sysctl -p
+
+# cron
+cp ../../host/etc/crontab /etc/
 
 
 
