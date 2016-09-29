@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# SOURCE
+# -----------------------------------------------------------------------------
+# This script is shared by installer sub scripts to set/get the global
+# variables. Add the following line to import this file:
+#
+#   source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
+#
+# -----------------------------------------------------------------------------
+set -e
