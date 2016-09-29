@@ -1,2 +1,2 @@
 bind-interfaces
-interface=ej0
+interface=#BRIDGE#

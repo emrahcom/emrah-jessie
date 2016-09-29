@@ -1,6 +1,6 @@
 # private bridge for LXC containers
-auto ej0
-iface ej0 inet static
+auto #BRIDGE#
+iface #BRIDGE# inet static
 address 172.22.22.1
 netmask 255.255.255.0
 bridge_ports none

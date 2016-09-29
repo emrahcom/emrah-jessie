@@ -14,6 +14,9 @@ export GIT_LOCAL_DIR="emrah-jessie"
 export RELEASE="jessie"
 export BASEDIR=`pwd`
 
+export PUBLIC_INTERFACE="eth0"
+export BRIDGE="ej0"
+
 # -----------------------------------------------------------------------------
 # CUSTOMIZATION
 # -----------------------------------------------------------------------------
@@ -24,6 +27,7 @@ export BASEDIR=`pwd`
 #		export DONT_CLONE_GIT_REPO=true
 #		export DONT_RUN_HOST=true
 #		export DONT_RUN_JESSIE=true
+#		export PUBLIC_INTERFACE="eth1"
 # -----------------------------------------------------------------------------
 [ -e "$BASEDIR/$CONFIG_FILE" ] && source "$BASEDIR/$CONFIG_FILE"
 
