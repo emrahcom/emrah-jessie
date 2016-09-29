@@ -21,8 +21,8 @@ echo "-------------------- NETWORK --------------------"
 # -----------------------------------------------------------------------------
 
 # Private bridge interface for the containers
-DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/emrah-jessie-hosts
-             | head -n1)
+DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/emrah-jessie-hosts | \
+             head -n1)
 HOST=${DNS_RECORD##*/}
 brctl addbr $BRIDGE
 ifconfig $BRIDGE $HOST netmask 255.255.255.0 up
