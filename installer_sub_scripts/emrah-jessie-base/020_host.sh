@@ -21,7 +21,7 @@ echo "-------------------- HOST --------------------"
 # -----------------------------------------------------------------------------
 # BACKUP & STATUS
 # -----------------------------------------------------------------------------
-OLD_FILES="/root/emrah-jessie-backup/old_files_$DATE"
+OLD_FILES="/root/emrah_jessie_old_files/$DATE"
 mkdir -p $OLD_FILES
 
 # backup
