@@ -110,6 +110,14 @@ cp ../../host/etc/dnsmasq.d/emrah-jessie-hosts /etc/dnsmasq.d/
 sed -i "s/#BRIDGE#/${BRIDGE}/g" /etc/network/interfaces.d/emrah-jessie
 sed -i "s/#BRIDGE#/${BRIDGE}/g" /etc/dnsmasq.d/emrah-jessie-interface
 
+[ -z "$(egrep '^source-directory\s*interfaces.d' /etc/network/interfaces || true)" ] && \
+[ -z "$(egrep '^source-directory\s*/etc/network/interfaces.d' /etc/network/interfaces || true)" ] && \
+[ -z "$(egrep '^source\s*interfaces.d/\*' /etc/network/interfaces || true)" ] && \
+[ -z "$(egrep '^source\s*/etc/network/interfaces.d/\*' /etc/network/interfaces || true)" ] && \
+[ -z "$(egrep '^source\s*interfaces.d/emrah-jessie' /etc/network/interfaces || true)" ] && \
+[ -z "$(egrep '^source\s*/etc/network/interfaces.d/emrah-jessie' /etc/network/interfaces || true)" ] && \
+echo -e "\nsource /etc/network/interfaces.d/emrah-jessie" >> /etc/network/interfaces
+
 # sysctl.d
 sysctl -p
 
