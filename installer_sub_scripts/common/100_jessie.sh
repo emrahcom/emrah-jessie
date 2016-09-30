@@ -8,7 +8,6 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 [ "$DONT_RUN_JESSIE" = true ] && exit
 
 
-
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
@@ -17,13 +16,13 @@ ROOTFS="/var/lib/lxc/$MACH/rootfs"
 DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/ej_hosts | \
 	     head -n1)
 IP=${DNS_RECORD##*/}
+SSH_PORT="30${IP##*.}"
 echo JESSIE="$IP" >> \
     $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 cd $BASEDIR/$GIT_LOCAL_DIR/lxc/$MACH
 
 echo
 echo "-------------------- $MACH --------------------"
-
 
 
 # -----------------------------------------------------------------------------
@@ -68,7 +67,6 @@ cp etc/apt/apt.conf.d/80recommends $ROOTFS/etc/apt/apt.conf.d/
 lxc-start -d -n $MACH
 
 
-
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
@@ -89,7 +87,6 @@ lxc-attach -n $MACH -- apt-get install -y cron logrotate
 lxc-attach -n $MACH -- apt-get install -y dbus libpam-systemd
 
 
-
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
@@ -98,7 +95,6 @@ lxc-attach -n $MACH -- apt-get install -y dbus libpam-systemd
 cp /etc/hosts $ROOTFS/etc/
 cp etc/ssh/ssh_config $ROOTFS/etc/ssh/
 cp etc/ssh/sshd_config $ROOTFS/etc/ssh/
-
 
 
 # -----------------------------------------------------------------------------
@@ -127,6 +123,12 @@ cp root/ej_scripts/upgrade_debian.sh $ROOTFS/root/ej_scripts/
 chmod 744 $ROOTFS/root/ej_scripts/update_debian.sh
 chmod 744 $ROOTFS/root/ej_scripts/upgrade_debian.sh
 
+
+# -----------------------------------------------------------------------------
+# IPTABLES RULES
+# -----------------------------------------------------------------------------
+iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp \
+    --dport $SSH_PORT -j DNAT --to $JESSIE:22
 
 
 # -----------------------------------------------------------------------------
