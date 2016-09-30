@@ -1,0 +1,1 @@
+../common/951_password.sh

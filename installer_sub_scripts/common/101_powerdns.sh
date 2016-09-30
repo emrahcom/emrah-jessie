@@ -125,15 +125,8 @@ EOF"
 # -----------------------------------------------------------------------------
 echo "powerdns" > $ROOTFS/var/www/html/index.html
 
-cp etc/apache2/apache2.conf $ROOTFS/etc/apache2/
-cp etc/apache2/conf-available/security.conf $ROOTFS/etc/apache2/conf-available/
 cp etc/apache2/conf-available/servername.conf \
     $ROOTFS/etc/apache2/conf-available/
-cp etc/apache2/mods-available/remoteip.conf $ROOTFS/etc/apache2/mods-available/
-cp etc/apache2/sites-available/000-default.conf \
-    $ROOTFS/etc/apache2/sites-available/
-cp etc/apache2/sites-available/default-ssl.conf \
-    $ROOTFS/etc/apache2/sites-available/
 cp var/www/html/poweradmin/inc/config.inc.php \
     $ROOTFS/var/www/html/poweradmin/inc/
 
@@ -169,7 +162,6 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- a2ensite default-ssl.conf
 lxc-attach -n $MACH -- a2enconf servername
-lxc-attach -n $MACH -- a2enmod remoteip
 lxc-attach -n $MACH -- a2enmod ssl
 lxc-attach -n $MACH -- systemctl reload apache2
 lxc-attach -n $MACH -- reboot
