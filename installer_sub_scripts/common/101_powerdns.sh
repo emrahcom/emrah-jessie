@@ -34,7 +34,7 @@ rm -rf /var/lib/lxc/$MACH
 set -e
 
 # clone the new one
-lxc-clone -o jessie -n $MACH -P /var/lib/lxc/
+lxc-clone -o ej-jessie -n $MACH -P /var/lib/lxc/
 
 # container config
 rm -rf $ROOTFS/var/cache/apt/archives
