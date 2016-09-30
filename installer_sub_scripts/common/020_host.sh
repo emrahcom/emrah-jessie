@@ -6,8 +6,6 @@
 set -e
 [ "$DONT_RUN_HOST" = true ] && exit
 
-
-
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
@@ -15,8 +13,6 @@ cd $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER
 
 echo
 echo "-------------------- HOST --------------------"
-
-
 
 # -----------------------------------------------------------------------------
 # BACKUP & STATUS
@@ -53,13 +49,9 @@ ps auxfw >> $OLD_FILES/ps.status
 echo "# ----- dpkg -l -----" >> $OLD_FILES/dpkg.status
 dpkg -l >> $OLD_FILES/dpkg.status
 
-
-
-
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
-
 # repo update & upgrade
 apt-get update
 apt-get -dy dist-upgrade
@@ -82,12 +74,9 @@ apt-get install -y iputils-ping fping wget curl whois dnsutils
 apt-get install -y bzip2 rsync ack-grep
 apt-get install -y openntpd dnsmasq
 
-
-
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-
 # changed/added system files
 cp ../../host/etc/cron.d/ej_update /etc/cron.d/
 cp ../../host/etc/sysctl.d/ej_ip_forward.conf /etc/sysctl.d/
@@ -109,12 +98,9 @@ echo -e "\nsource /etc/network/interfaces.d/ej_bridge" >> /etc/network/interface
 # sysctl.d
 sysctl -p
 
-
-
 # -----------------------------------------------------------------------------
 # ROOT USER
 # -----------------------------------------------------------------------------
-
 # added directories
 mkdir -p /root/ej_scripts
 

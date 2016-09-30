@@ -6,20 +6,15 @@
 set -e
 [ "$DONT_RUN_NETWORK" = true ] && exit
 
-
-
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
 echo
 echo "-------------------- NETWORK --------------------"
 
-
-
 # -----------------------------------------------------------------------------
 # NETWORK CONFIG
 # -----------------------------------------------------------------------------
-
 # public interface
 DEFAULT_ROUTE=$(ip route | egrep '^default ' | head -n1)
 PUBLIC_INTERFACE=${DEFAULT_ROUTE##*dev }
@@ -52,12 +47,9 @@ iptables -t nat -A POSTROUTING -s 172.22.22.0/24 -o $PUBLIC_INTERFACE \
 # status
 ip addr
 
-
-
 # -----------------------------------------------------------------------------
 # NETWORK RELATED SERVICES
 # -----------------------------------------------------------------------------
-
 # dnsmasq
 systemctl stop dnsmasq.service
 systemctl start dnsmasq.service

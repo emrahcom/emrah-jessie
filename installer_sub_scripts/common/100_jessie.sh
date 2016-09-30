@@ -7,7 +7,6 @@ set -e
 source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 [ "$DONT_RUN_JESSIE" = true ] && exit
 
-
 # -----------------------------------------------------------------------------
 # INIT
 # -----------------------------------------------------------------------------
@@ -24,11 +23,9 @@ cd $BASEDIR/$GIT_LOCAL_DIR/lxc/$MACH
 echo
 echo "-------------------- $MACH --------------------"
 
-
 # -----------------------------------------------------------------------------
 # CONTAINER SETUP
 # -----------------------------------------------------------------------------
-
 # remove the old container if exists
 set +e
 lxc-stop -n $MACH
@@ -66,11 +63,9 @@ cp etc/apt/apt.conf.d/80recommends $ROOTFS/etc/apt/apt.conf.d/
 # start container
 lxc-start -d -n $MACH
 
-
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
-
 # update
 lxc-attach -n $MACH -- apt-get update
 lxc-attach -n $MACH -- apt-get -y install debian-archive-keyring
@@ -86,21 +81,17 @@ lxc-attach -n $MACH -- apt-get install -y rsync bzip2 man ack-grep
 lxc-attach -n $MACH -- apt-get install -y cron logrotate
 lxc-attach -n $MACH -- apt-get install -y dbus libpam-systemd
 
-
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-
 # changed/added system files
 cp /etc/hosts $ROOTFS/etc/
 cp etc/ssh/ssh_config $ROOTFS/etc/ssh/
 cp etc/ssh/sshd_config $ROOTFS/etc/ssh/
 
-
 # -----------------------------------------------------------------------------
 # ROOT USER
 # -----------------------------------------------------------------------------
-
 # shell
 lxc-attach -n $MACH -- chsh -s /bin/zsh root
 cp root/.bashrc $ROOTFS/root/
@@ -123,13 +114,12 @@ cp root/ej_scripts/upgrade_debian.sh $ROOTFS/root/ej_scripts/
 chmod 744 $ROOTFS/root/ej_scripts/update_debian.sh
 chmod 744 $ROOTFS/root/ej_scripts/upgrade_debian.sh
 
-
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
+# public ssh
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp \
     --dport $SSH_PORT -j DNAT --to $JESSIE:22
-
 
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
