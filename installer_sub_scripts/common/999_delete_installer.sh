@@ -8,5 +8,5 @@ set -e
 
 # remove installer and git repo.
 cd $BASEDIR
-rm -f ${INSTALLER}.sh
+rm -f ${INSTALLER}
 rm -rf $GIT_LOCAL_DIR
