@@ -90,7 +90,7 @@ apt-get install -y openntpd dnsmasq
 
 # changed/added system files
 cp ../../host/etc/cron.d/ej_update /etc/cron.d/
-cp ../../host/etc/sysctl.d/ej.conf /etc/sysctl.d/
+cp ../../host/etc/sysctl.d/ej_ip_forward.conf /etc/sysctl.d/
 cp ../../host/etc/network/interfaces.d/ej_bridge /etc/network/interfaces.d/
 cp ../../host/etc/dnsmasq.d/ej_interface /etc/dnsmasq.d/
 cp ../../host/etc/dnsmasq.d/ej_hosts /etc/dnsmasq.d/
