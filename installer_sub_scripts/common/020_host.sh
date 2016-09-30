@@ -17,7 +17,7 @@ echo "-------------------- HOST --------------------"
 # -----------------------------------------------------------------------------
 # BACKUP & STATUS
 # -----------------------------------------------------------------------------
-OLD_FILES="/root/emrah_jessie_old_files/$DATE"
+OLD_FILES="/root/ej_old_files/$DATE"
 mkdir -p $OLD_FILES
 
 # backup the files which will be changed
