@@ -119,8 +119,8 @@ chmod 744 $ROOTFS/root/ej_scripts/upgrade_debian.sh
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
 # public ssh
-iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp \
-    --dport $SSH_PORT -j DNAT --to $IP:22
+iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SSH_PORT -j DNAT --to $IP:22 || \
+iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SSH_PORT -j DNAT --to $IP:22
 
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES

@@ -35,10 +35,10 @@ ip route >> $OLD_FILES/network.status
 # iptables status
 if [ -n "`command -v iptables`" ]
 then
-	echo "# ----- iptables -nv -L -----" >> $OLD_FILES/iptables.status
-	iptables -nv -L >> $OLD_FILES/iptables.status
-	echo "# ----- iptables -nv -L -t nat -----" >> $OLD_FILES/iptables.status
-	iptables -nv -L -t nat >> $OLD_FILES/iptables.status
+    echo "# ----- iptables -nv -L -----" >> $OLD_FILES/iptables.status
+    iptables -nv -L >> $OLD_FILES/iptables.status
+    echo "# ----- iptables -nv -L -t nat -----" >> $OLD_FILES/iptables.status
+    iptables -nv -L -t nat >> $OLD_FILES/iptables.status
 fi
 
 # process status

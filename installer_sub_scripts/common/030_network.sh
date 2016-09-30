@@ -23,8 +23,7 @@ echo PUBLIC_INTERFACE="$PUBLIC_INTERFACE" >> \
     $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
 
 # IP address
-DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/ej_hosts | \
-             head -n1)
+DNS_RECORD=$(grep 'address=/host/' /etc/dnsmasq.d/ej_hosts | head -n1)
 IP=${DNS_RECORD##*/}
 echo HOST="$IP" >> \
     $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
@@ -37,15 +36,16 @@ ifconfig $BRIDGE $IP netmask 255.255.255.0 up
 # IP forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
-# iptables
-iptables -F
-iptables -F -t nat
+# -----------------------------------------------------------------------------
+# IPTABLES
+# -----------------------------------------------------------------------------
+# drop packets coming from the public interface to private IP
+iptables -C INPUT -d $IP -i $PUBLIC_INTERFACE -j DROP || \
 iptables -A INPUT -d $IP -i $PUBLIC_INTERFACE -j DROP
-iptables -t nat -A POSTROUTING -s 172.22.22.0/24 -o $PUBLIC_INTERFACE \
-    -j MASQUERADE
 
-# status
-ip addr
+# masquerade packets coming from the private network
+iptables -t nat -C POSTROUTING -s 172.22.22.0/24 -o $PUBLIC_INTERFACE -j MASQUERADE || \
+iptables -t nat -A POSTROUTING -s 172.22.22.0/24 -o $PUBLIC_INTERFACE -j MASQUERADE
 
 # -----------------------------------------------------------------------------
 # NETWORK RELATED SERVICES
@@ -53,3 +53,8 @@ ip addr
 # dnsmasq
 systemctl stop dnsmasq.service
 systemctl start dnsmasq.service
+
+# -----------------------------------------------------------------------------
+# STATUS
+# -----------------------------------------------------------------------------
+ip addr
