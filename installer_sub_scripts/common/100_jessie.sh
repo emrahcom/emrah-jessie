@@ -119,7 +119,7 @@ chmod 744 $ROOTFS/root/ej_scripts/upgrade_debian.sh
 # -----------------------------------------------------------------------------
 # public ssh
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp \
-    --dport $SSH_PORT -j DNAT --to $JESSIE:22
+    --dport $SSH_PORT -j DNAT --to $IP:22
 
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
