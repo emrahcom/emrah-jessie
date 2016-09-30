@@ -32,6 +32,7 @@ lxc-stop -n $MACH
 lxc-wait -n $MACH -s STOPPED
 lxc-destroy -n $MACH
 rm -rf /var/lib/lxc/$MACH
+sleep 1
 set -e
 
 # create the new one
