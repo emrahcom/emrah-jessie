@@ -88,7 +88,9 @@ lxc-attach -n $MACH -- \
          php5 php5-mcrypt php-pear php-mdb2 php-mdb2-driver-pgsql php5-pgsql \
 	 ssl-cert'
 
-# poweradmin
+# -----------------------------------------------------------------------------
+# POWERADMIN
+# -----------------------------------------------------------------------------
 mkdir $ROOTFS/var/www/html/poweradmin
 git clone --depth=1 https://github.com/poweradmin/poweradmin.git \
     $ROOTFS/var/www/html/poweradmin
@@ -123,8 +125,7 @@ EOF"
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-echo "powerdns" > $ROOTFS/var/www/html/index.html
-
+cp var/www/html/index.html $ROOTFS/var/www/html/
 cp etc/apache2/conf-available/servername.conf \
     $ROOTFS/etc/apache2/conf-available/
 cp var/www/html/poweradmin/inc/config.inc.php \
