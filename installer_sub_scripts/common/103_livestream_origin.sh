@@ -148,7 +148,7 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-cp etc/cron.d/ej_cleanup $ROOTFS/etc/cron.d/
+cp etc/cron.d/ej_hls_cleanup $ROOTFS/etc/cron.d/
 cp etc/nginx/nginx.conf $ROOTFS/etc/nginx/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
