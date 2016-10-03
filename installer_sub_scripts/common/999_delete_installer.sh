@@ -6,7 +6,6 @@
 set -e
 [ "$DONT_RUN_DELETE_INSTALLER" = true ] && exit
 
-# remove installer and git repo.
+# remove the git local repo.
 cd $BASEDIR
-rm -f ${INSTALLER}
 rm -rf $GIT_LOCAL_DIR
