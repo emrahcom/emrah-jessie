@@ -1,3 +1,6 @@
 address=/host/172.22.22.1
-address=/ej-powerdns/172.22.22.101
+address=/ej-compiler/172.22.22.101
+address=/ej-powerdns/172.22.22.102
+address=/ej-livestream-origin/172.22.22.103
+address=/ej-livestream-edge/172.22.22.104
 address=/ej-jessie/172.22.22.254
