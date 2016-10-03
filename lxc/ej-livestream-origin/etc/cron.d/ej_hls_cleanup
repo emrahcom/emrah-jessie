@@ -1,0 +1,4 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+* *	* * *	root	/root/scripts/livestream_cleanup.sh >/dev/null 2>&1

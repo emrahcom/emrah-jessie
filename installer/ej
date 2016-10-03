@@ -24,6 +24,7 @@ export RELEASE="jessie"
 export BASEDIR=`pwd`
 
 export BRIDGE="ej0"
+export SHARED="/usr/local/ej"
 
 # -----------------------------------------------------------------------------
 # CUSTOMIZATION

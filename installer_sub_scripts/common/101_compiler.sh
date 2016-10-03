@@ -36,9 +36,15 @@ set -e
 # clone the new one
 lxc-clone -o ej-jessie -n $MACH -P /var/lib/lxc/
 
+# shared directories
+mkdir -p $SHARED
+cp -arp $BASEDIR/$GIT_LOCAL_DIR/host/usr/local/ej/deb $SHARE/
+
 # container config
 rm -rf $ROOTFS/var/cache/apt/archives
 mkdir -p $ROOTFS/var/cache/apt/archives
+rm -rf $ROOTFS/$SHARED/deb
+mkdir -p $ROOTFS/$SHARED/deb
 sed -i '/\/var\/cache\/apt\/archives/d' /var/lib/lxc/$MACH/config
 sed -i '/lxc\.network\./d' /var/lib/lxc/$MACH/config
 cat >> /var/lib/lxc/$MACH/config <<EOF
@@ -51,6 +57,8 @@ lxc.group = onboot
 
 lxc.mount.entry = /var/cache/apt/archives \
 /var/lib/lxc/$MACH/rootfs/var/cache/apt/archives none bind 0 0
+lxc.mount.entry = $SHARED/deb \
+/var/lib/lxc/$MACH/rootfs/$SHARED/deb none bind 0 0
 
 lxc.network.type = veth
 lxc.network.flags = up

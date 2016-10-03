@@ -1,0 +1,47 @@
+# -----------------------------------------------------------------------------
+# # DEFAULT SERVER
+# -----------------------------------------------------------------------------
+server {
+
+listen 80 default_server;
+listen [::]:80 default_server;
+
+server_name _;
+root #SHARED#/livestream;
+index index.html index.htm;
+
+# hls
+location /livestream/hls {
+	types {
+		application/vnd.apple.mpegurl m3u8;
+		video/mp2t ts; }
+
+	alias #SHARED#/livestream/hls;
+
+	add_header Cache-Control no-cache;
+	add_header X-Host $host;
+	add_header X-Node "hls";
+	add_header X-Worker $pid; }
+
+# rtmp_stat
+location /livestream/rtmp_stat {
+	rtmp_stat all;
+	rtmp_stat_stylesheet rtmp_stat.xsl;
+
+	add_header X-Host $host;
+	add_header X-Node "rmtp_stat";
+	add_header X-Worker $pid; }
+
+# rtmp_stat.xsl
+location /livestream/rtmp_stat.xsl {
+	alias #SHARED#/livestream/stat/rtmp_stat.xsl;
+
+	add_header X-Host $host;
+	add_header X-Node "rmtp_stat_xls";
+	add_header X-Worker $pid; }
+
+# denied
+location / {
+	deny all; }
+
+} # server_end
