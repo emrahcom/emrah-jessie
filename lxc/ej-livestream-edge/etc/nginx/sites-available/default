@@ -1,0 +1,51 @@
+# -----------------------------------------------------------------------------
+# # DEFAULT SERVER
+# -----------------------------------------------------------------------------
+server {
+
+listen 80 default_server;
+listen [::]:80 default_server;
+
+server_name _;
+root #SHARED#/livestream;
+index index.html index.htm;
+
+# channel
+location ~* /livestream/channel/(.*) {
+	try_files $uri /livestream/player/index.php?channel=$1;
+	add_header X-Host $host;
+	add_header X-Node "channel"; }
+
+# player
+location = /livestream/player/index.php {
+	alias #SHARED#/livestream/player/index.php;
+
+	include snippets/fastcgi-php.conf;
+	fastcgi_pass unix:/var/run/php5-fpm.sock;
+
+	add_header X-Host $host;
+	add_header X-Node "player"; }
+
+# player static files
+location /livestream/player {
+	alias #SHARED#/livestream/player;
+	add_header X-Host $host;
+	add_header X-Node "player static"; }
+
+# hls
+location /livestream/hls {
+	alias #SHARED#/livestream/hls;
+
+	types {
+		application/vnd.apple.mpegurl m3u8;
+		video/mp2t ts; }
+
+	add_header Cache-Control no-cache;
+	add_header X-Host $host;
+	add_header X-Node "hls"; }
+
+# denied
+location / {
+	deny all; }
+
+} # server_end
