@@ -102,5 +102,5 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
-lxc-attach -n $MACH -- stop
+lxc-attach -n $MACH -- poweroff
 lxc-wait -n $MACH -s STOPPED
