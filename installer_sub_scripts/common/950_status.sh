@@ -7,8 +7,8 @@ set -e
 [ "$DONT_RUN_STATUS" = true ] && exit
 
 echo
-echo "-------------------- STATUS --------------------"
-
+echo "-------------------------- STATUS --------------------------"
+ 
 # network
 ip addr
 echo
