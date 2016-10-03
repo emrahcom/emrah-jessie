@@ -16,9 +16,9 @@ To install a containerized PowerDNS system, login a Debian Jessie box as `root` 
 	# bash ej ej-powerdns
 ```
 
-## Available template
+## Available templates
 ### ej-base
-Install only a containerezed Debian Jessie.
+Install only a containerized Debian Jessie.
 
 ### ej-powerdns
 Install a ready-to-run DNS system. Main component are:
