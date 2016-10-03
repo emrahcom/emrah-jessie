@@ -38,7 +38,7 @@ lxc-clone -o ej-jessie -n $MACH -P /var/lib/lxc/
 
 # shared directories
 mkdir -p $SHARED/
-cp -arp $BASEDIR/$GIT_LOCAL_DIR/host/usr/local/ej/livestream $SHARE/
+cp -arp $BASEDIR/$GIT_LOCAL_DIR/host/usr/local/ej/livestream $SHARED/
 chown www-data:www-data $SHARED/livestream -R
 
 # container config
