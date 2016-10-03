@@ -7,7 +7,7 @@
 if [ -z "$1" ]
 then
 	echo "ERROR: missing argument. The template name is required"
-	echo "usage:"
+	echo "Usage:"
 	echo "         bash ej <TEMPLATE_NAME>"
 	exit 1
 fi
