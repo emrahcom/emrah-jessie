@@ -153,9 +153,9 @@ cp etc/nginx/nginx.conf $ROOTFS/etc/nginx/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
 
-sed -i "s/#SHARED#/$SHARED/g" $ROOTFS/etc/nginx/nginx.conf
-sed -i "s/#SHARED#/$SHARED/g" $ROOTFS/etc/nginx/sites-available/default
-sed -i "s/#SHARED#/$SHARED/g" $ROOTFS/root/scripts/livestream_cleanup.sh
+sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/nginx.conf
+sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/sites-available/default
+sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/root/scripts/livestream_cleanup.sh
 
 cp root/scripts/livestream_cleanup.sh $ROOTFS/root/scripts/
 cp root/scripts/livestream_test.sh $ROOTFS/root/scripts/
