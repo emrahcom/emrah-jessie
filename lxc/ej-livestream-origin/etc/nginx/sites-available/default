@@ -24,7 +24,7 @@ location /livestream/hls {
 	add_header X-Worker $pid; }
 
 # rtmp_stat
-location /livestream/rtmp_stat {
+location ~* /livestream/(rtmp_stat|stat|status)$ {
 	rtmp_stat all;
 	rtmp_stat_stylesheet rtmp_stat.xsl;
 
