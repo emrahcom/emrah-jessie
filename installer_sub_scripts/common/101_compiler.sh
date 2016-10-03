@@ -49,11 +49,11 @@ sed -i '/\/var\/cache\/apt\/archives/d' /var/lib/lxc/$MACH/config
 sed -i '/lxc\.network\./d' /var/lib/lxc/$MACH/config
 cat >> /var/lib/lxc/$MACH/config <<EOF
 
-lxc.start.auto = 1
+#lxc.start.auto = 1
 lxc.start.order = 100
 lxc.start.delay = 2
 lxc.group = ej-group
-lxc.group = onboot
+#lxc.group = onboot
 
 lxc.mount.entry = /var/cache/apt/archives \
 /var/lib/lxc/$MACH/rootfs/var/cache/apt/archives none bind 0 0
@@ -102,5 +102,5 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
-lxc-attach -n $MACH -- reboot
-lxc-wait -n $MACH -s RUNNING
+lxc-attach -n $MACH -- stop
+lxc-wait -n $MACH -s STOPPED

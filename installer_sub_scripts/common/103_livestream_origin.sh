@@ -80,6 +80,10 @@ lxc-wait -n $MACH -s RUNNING
 # -----------------------------------------------------------------------------
 # COMPILING
 # -----------------------------------------------------------------------------
+# start the compiler container
+lxc-start -d -n ej-compiler
+lxc-wait -n ej-compiler -s RUNNING
+
 # packages
 lxc-attach -n ej-compiler -- \
     zsh -c \
@@ -110,6 +114,10 @@ lxc-attach -n ej-compiler -- \
      cd ..
      mv nginx-common_*.deb nginx-full_* nginx-extras_*.deb nginx-doc_*.deb \
          $SHARED/deb/"
+
+# stop the compiler container
+lxc-stop -n ej-compiler
+lxc-wait -n ej-compiler -s STOPPED
 
 # -----------------------------------------------------------------------------
 # PACKAGES
