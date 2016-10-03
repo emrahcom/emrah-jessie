@@ -38,7 +38,7 @@ lxc-clone -o ej-jessie -n $MACH -P /var/lib/lxc/
 
 # shared directories
 mkdir -p $SHARED
-cp -arp $BASEDIR/$GIT_LOCAL_DIR/host/usr/local/ej/deb $SHARE/
+cp -arp $BASEDIR/$GIT_LOCAL_DIR/host/usr/local/ej/deb $SHARED/
 
 # container config
 rm -rf $ROOTFS/var/cache/apt/archives
