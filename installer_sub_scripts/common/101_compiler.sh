@@ -95,3 +95,4 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- reboot
+lxc-wait -n $MACH -s RUNNING

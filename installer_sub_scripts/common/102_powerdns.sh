@@ -166,4 +166,6 @@ lxc-attach -n $MACH -- a2ensite default-ssl.conf
 lxc-attach -n $MACH -- a2enconf servername
 lxc-attach -n $MACH -- a2enmod ssl
 lxc-attach -n $MACH -- systemctl reload apache2
+
 lxc-attach -n $MACH -- reboot
+lxc-wait -n $MACH -s RUNNING
