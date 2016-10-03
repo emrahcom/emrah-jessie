@@ -1,0 +1,1 @@
+../common/952_password_poweradmin.sh
