@@ -62,6 +62,7 @@ EOF
 
 # start container
 lxc-start -d -n $MACH
+lxc-wait -n $MACH -s RUNNING
 
 # -----------------------------------------------------------------------------
 # PACKAGES
