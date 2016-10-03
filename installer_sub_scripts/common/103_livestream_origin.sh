@@ -152,15 +152,14 @@ cp etc/cron.d/ej_hls_cleanup $ROOTFS/etc/cron.d/
 cp etc/nginx/nginx.conf $ROOTFS/etc/nginx/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
-
 sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/nginx.conf
 sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/sites-available/default
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/root/scripts/livestream_cleanup.sh
 
-cp root/scripts/livestream_cleanup.sh $ROOTFS/root/scripts/
-cp root/scripts/livestream_test.sh $ROOTFS/root/scripts/
-chmod u+x $ROOTFS/root/scripts/livestream_cleanup.sh
-chmod u+x $ROOTFS/root/scripts/livestream_test.sh
+cp root/ej_scripts/livestream_cleanup.sh $ROOTFS/root/ej_scripts/
+cp root/ej_scripts/livestream_test.sh $ROOTFS/root/ej_scripts/
+sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/root/ej_scripts/livestream_cleanup.sh
+chmod u+x $ROOTFS/root/ej_scripts/livestream_cleanup.sh
+chmod u+x $ROOTFS/root/ej_scripts/livestream_test.sh
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
