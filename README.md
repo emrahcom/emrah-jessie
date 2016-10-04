@@ -29,3 +29,10 @@ Install a ready-to-run DNS system. Main components are:
 Install a ready-to-run livestream system. Main components are:
 * Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS
 * Nginx server with standart modules as a stream edge. It publish the HLS stream.
+
+## Requirements
+`emrah-jessie` requires a Debian Jessie host with a minimal install and Internet access during the installation. It's not a good idea to use a desktop machine or a production server as a host machine. Please, use one of the following as a host:
+* a cloud host from a hosting/cloud service (Digital Ocean's droplet, Amazon EC2 instance etc)
+* a virtual machine (VMware, VirtualBox etc)
+* a Linux container (LXC)
+* a physical machine with a fresh installed Debian Jessie
