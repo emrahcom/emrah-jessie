@@ -31,8 +31,9 @@ Install a ready-to-run DNS system. Main components are:
 
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
-* Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS
+* Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS.
 * Nginx server with standart modules as a stream edge. It publish the HLS stream.
+* Web based video player
 
 Requirements
 ============
