@@ -1,6 +1,6 @@
 ## About
 `emrah-jessie` is an installer to create the containerized systems on Debian Jessie box.
-It built on top of the Linux containers (LXC).
+It built on top of LXC (Linux containers).
 
 ## Usage
 Download the installer and run it with a template name as argument.
