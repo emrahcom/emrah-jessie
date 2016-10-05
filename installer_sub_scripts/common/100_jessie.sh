@@ -36,11 +36,13 @@ set -e
 lxc-create -n $MACH -t debian -P /var/lib/lxc/ -- -r jessie
 
 # container config
+rm -rf $ROOTFS/var/cache/apt/archives
+mkdir -p $ROOTFS/var/cache/apt/archives
 sed -i '/lxc\.network\./d' /var/lib/lxc/$MACH/config
 cat >> /var/lib/lxc/$MACH/config <<EOF
 
 lxc.mount.entry = /var/cache/apt/archives \
-/var/lib/lxc/$MACH/rootfs/var/cache/apt/archives none bind 0 0
+$ROOTFS/var/cache/apt/archives none bind 0 0
 
 lxc.network.type = veth
 lxc.network.flags = up
@@ -49,8 +51,6 @@ lxc.network.name = $PUBLIC_INTERFACE
 lxc.network.ipv4 = $IP/24
 lxc.network.ipv4.gateway = auto
 EOF
-rm -rf $ROOTFS/var/cache/apt/archives
-mkdir -p $ROOTFS/var/cache/apt/archives
 
 # changed/added system files
 echo nameserver $HOST > $ROOTFS/etc/resolv.conf

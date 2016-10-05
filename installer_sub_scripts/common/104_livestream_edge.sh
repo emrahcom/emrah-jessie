@@ -57,9 +57,9 @@ lxc.group = ej-group
 lxc.group = onboot
 
 lxc.mount.entry = /var/cache/apt/archives \
-/var/lib/lxc/$MACH/rootfs/var/cache/apt/archives none bind 0 0
+$ROOTFS/var/cache/apt/archives none bind 0 0
 lxc.mount.entry = $SHARED/livestream \
-/var/lib/lxc/$MACH/rootfs/$SHARED/livestream none bind 0 0
+$ROOTFS/$SHARED/livestream none bind 0 0
 
 lxc.network.type = veth
 lxc.network.flags = up
