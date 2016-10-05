@@ -5,7 +5,7 @@ It built on top of LXC (Linux containers).
 
 Usage
 =====
-Download the installer, run it with a template name as argument and drink a coffee. That's it.
+Download the installer, run it with a template name as an argument and drink a coffee. That's it.
 ```
 	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
 	# bash ej <TEMPLATE_NAME>
