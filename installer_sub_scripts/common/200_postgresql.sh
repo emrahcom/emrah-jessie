@@ -84,7 +84,7 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 sed -i "s/^listen_addresses\s*=\s*'localhost'/listen_addresses = '*'/" \
     $ROOTFS/etc/postgresql/9.4/main/postgresql.conf
-echo "host    all             all             172.22.22.0/24           md5" > \
+cat etc/postgresql/9.4/main/ej_hba.conf >> \
     $ROOTFS/etc/postgresql/9.4/main/pg_hba.conf
 
 # -----------------------------------------------------------------------------
