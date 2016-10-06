@@ -82,8 +82,8 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-sed -i "s/^listen_addresses\s*=\s*'localhost'/listen_addresses = '*'/" \
-    $ROOTFS/etc/postgresql/9.4/main/postgresql.conf
+sed -i "/^#listen_addresses/i \\
+listen_addresses = '*'" $ROOTFS/etc/postgresql/9.4/main/postgresql.conf
 cat etc/postgresql/9.4/main/ej_hba.conf >> \
     $ROOTFS/etc/postgresql/9.4/main/pg_hba.conf
 
