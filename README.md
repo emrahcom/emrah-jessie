@@ -47,7 +47,7 @@ After install:
 
 Requirements
 ============
-`emrah-jessie` requires a Debian Jessie host with a minimal install and Internet access during the installation. It's not a good idea to use your desktop machine or a production server as a host machine. Please, use one of the followings as a host:
+`emrah-jessie` requires a Debian Jessie host with a minimal install and Internet access during the installation. It's not a good idea to use your desktop machine or an already in-use production server as a host machine. Please, use one of the followings as a host:
 * a cloud host from a hosting/cloud service (Digital Ocean's droplet, Amazon EC2 instance etc)
 * a virtual machine (VMware, VirtualBox etc)
 * a Linux container (LXC)
