@@ -36,6 +36,7 @@ After install:
 Related links:
 * [PowerDNS] (https://github.com/PowerDNS/pdns)
 * [Poweradmin] (https://github.com/poweradmin/poweradmin)
+* [PostgreSQL] (https://www.postgresql.org/)
 
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
