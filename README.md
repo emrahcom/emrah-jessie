@@ -35,7 +35,7 @@ After install:
 
 Related links:
 * [PowerDNS] (https://github.com/PowerDNS/pdns)
-
+* [Poweradmin] (https://github.com/poweradmin/poweradmin)
 
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
@@ -48,6 +48,12 @@ After install:
 * `http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8` to pull the HLS stream
 * `http://<IP_ADDRESS>/livestream/channel/<CHANNEL_NAME>` for the video player page
 * `http://<IP_ADDRESS>:10080/livestream/status` for the RTMP status page
+
+Related links:
+* [nginx-rtmp-module] (https://github.com/arut/nginx-rtmp-module) Arut's repo
+* [nginx-rtmp-module] (https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) Sergey's repo
+* [video.js] (https://github.com/videojs/video.js)
+* [videojs-contrib-hls] (https://github.com/videojs/videojs-contrib-hls)
 
 Requirements
 ============
