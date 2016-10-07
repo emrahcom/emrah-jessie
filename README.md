@@ -33,6 +33,10 @@ After install:
 * `http://<IP_ADDRESS>/poweradmin` to access the DNS control panel
 * `https://<IP_ADDRESS>/poweradmin` to access the DNS control panel via HTTPS
 
+Related links:
+* [PowerDNS] (https://github.com/PowerDNS/pdns)
+
+
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
 * Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS.
