@@ -30,8 +30,8 @@ Install a ready-to-run DNS system. Main components are:
 * Poweradmin - the web based control panel for PowerDNS
 
 After install:
-* http://<IP_ADDRESS>/poweradmin to access the DNS control panel
-* https://<IP_ADDRESS>/poweradmin to access the DNS control panel via HTTPS
+* `http://<IP_ADDRESS>/poweradmin` to access the DNS control panel
+* `https://<IP_ADDRESS>/poweradmin` to access the DNS control panel via HTTPS
 
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
@@ -40,10 +40,10 @@ Install a ready-to-run livestream system. Main components are:
 * Web based video player
 
 After install:
-* rtmp://<IP_ADDRESS>/livestream/<CHANNEL_NAME> to push a stream (H264/AAC)
-* http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8 to pull the HLS stream
-* http://<IP_ADDRESS>/livestream/channel/<CHANNEL_NAME> for the video player page
-* http://<IP_ADDRESS>:10080/livestream/status for the RTMP status page
+* `rtmp://<IP_ADDRESS>/livestream/<CHANNEL_NAME>` to push a stream (H264/AAC)
+* `http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8` to pull the HLS stream
+* `http://<IP_ADDRESS>/livestream/channel/<CHANNEL_NAME>` for the video player page
+* `http://<IP_ADDRESS>:10080/livestream/status` for the RTMP status page
 
 Requirements
 ============
