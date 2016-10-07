@@ -29,11 +29,21 @@ Install a ready-to-run DNS system. Main components are:
 * PowerDNS server with a PostgreSQL backend
 * Poweradmin - the web based control panel for PowerDNS
 
+After install:
+* http://<IP_ADDRESS>/poweradmin to access the DNS control panel
+* https://<IP_ADDRESS>/poweradmin to access the DNS control panel via HTTPS
+
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
 * Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS.
 * Nginx server with standart modules as a stream edge. It publish the HLS stream.
 * Web based video player
+
+After install:
+* rtmp://<IP_ADDRESS>/livestream/<CHANNEL_NAME> to push a stream (H264/AAC)
+* http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8 to pull the HLS stream
+* http://<IP_ADDRESS>/livestream/channel/<CHANNEL_NAME> for the video player page
+* http://<IP_ADDRESS>:10080/livestream/status for the RTMP status page
 
 Requirements
 ============
