@@ -7,7 +7,7 @@ listen 80 default_server;
 listen [::]:80 default_server;
 
 server_name _;
-root #SHARED#/livestream;
+root /usr/local/ej/livestream;
 index index.html index.htm;
 
 # hls
@@ -16,7 +16,7 @@ location /livestream/hls {
 		application/vnd.apple.mpegurl m3u8;
 		video/mp2t ts; }
 
-	alias #SHARED#/livestream/hls;
+	alias /usr/local/ej/livestream/hls;
 
 	add_header Cache-Control no-cache;
 	add_header X-Host $host;
@@ -34,7 +34,7 @@ location ~* /livestream/(rtmp_stat|stat|status)$ {
 
 # rtmp_stat.xsl
 location /livestream/rtmp_stat.xsl {
-	alias #SHARED#/livestream/stat/rtmp_stat.xsl;
+	alias /usr/local/ej/livestream/stat/rtmp_stat.xsl;
 
 	add_header X-Host $host;
 	add_header X-Node "rmtp_stat_xls";

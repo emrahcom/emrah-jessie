@@ -7,7 +7,7 @@ listen 80 default_server;
 listen [::]:80 default_server;
 
 server_name _;
-root #SHARED#/livestream;
+root /usr/local/ej/livestream;
 index index.html index.htm;
 
 # channel
@@ -18,7 +18,7 @@ location ~* /livestream/channel/(.*) {
 
 # player
 location = /livestream/player/index.php {
-	alias #SHARED#/livestream/player/index.php;
+	alias /usr/local/ej/livestream/player/index.php;
 
 	include snippets/fastcgi-php.conf;
 	fastcgi_pass unix:/var/run/php5-fpm.sock;
@@ -28,13 +28,13 @@ location = /livestream/player/index.php {
 
 # player static files
 location /livestream/player {
-	alias #SHARED#/livestream/player;
+	alias /usr/local/ej/livestream/player;
 	add_header X-Host $host;
 	add_header X-Node "player static"; }
 
 # hls
 location /livestream/hls {
-	alias #SHARED#/livestream/hls;
+	alias /usr/local/ej/livestream/hls;
 
 	types {
 		application/vnd.apple.mpegurl m3u8;

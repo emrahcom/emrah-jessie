@@ -44,8 +44,8 @@ chown www-data:www-data $SHARED/livestream -R
 # container config
 rm -rf $ROOTFS/var/cache/apt/archives
 mkdir -p $ROOTFS/var/cache/apt/archives
-rm -rf $ROOTFS/$SHARED/livestream
-mkdir -p $ROOTFS/$SHARED/livestream
+rm -rf $ROOTFS/usr/local/ej/livestream
+mkdir -p $ROOTFS/usr/local/ej/livestream
 sed -i '/\/var\/cache\/apt\/archives/d' /var/lib/lxc/$MACH/config
 sed -i '/lxc\.network\./d' /var/lib/lxc/$MACH/config
 cat >> /var/lib/lxc/$MACH/config <<EOF
@@ -59,7 +59,7 @@ lxc.group = onboot
 lxc.mount.entry = /var/cache/apt/archives \
 $ROOTFS/var/cache/apt/archives none bind 0 0
 lxc.mount.entry = $SHARED/livestream \
-$ROOTFS/$SHARED/livestream none bind 0 0
+$ROOTFS/usr/local/ej/livestream none bind 0 0
 
 lxc.network.type = veth
 lxc.network.flags = up
@@ -93,8 +93,6 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/nginx.conf
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/sites-available/default
 
 # -----------------------------------------------------------------------------
 # VIDEO PLAYER
@@ -102,7 +100,7 @@ sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/sites-available/default
 cp -arp usr/local/ej/livestream/player $SHARED/livestream/
 lxc-attach -n $MACH -- \
     zsh -c \
-    "chown www-data: $SHARED/livestream/player -R"
+    "chown www-data: /usr/local/ej/livestream/player -R"
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES

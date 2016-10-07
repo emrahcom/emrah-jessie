@@ -44,10 +44,10 @@ chown www-data:www-data $SHARED/livestream -R
 # container config
 rm -rf $ROOTFS/var/cache/apt/archives
 mkdir -p $ROOTFS/var/cache/apt/archives
-rm -rf $ROOTFS/$SHARED/deb
-mkdir -p $ROOTFS/$SHARED/deb
-rm -rf $ROOTFS/$SHARED/livestream
-mkdir -p $ROOTFS/$SHARED/livestream
+rm -rf $ROOTFS/usr/local/ej/deb
+mkdir -p $ROOTFS/usr/local/ej/deb
+rm -rf $ROOTFS/usr/local/ej/livestream
+mkdir -p $ROOTFS/usr/local/ej/livestream
 sed -i '/\/var\/cache\/apt\/archives/d' /var/lib/lxc/$MACH/config
 sed -i '/lxc\.network\./d' /var/lib/lxc/$MACH/config
 cat >> /var/lib/lxc/$MACH/config <<EOF
@@ -60,8 +60,9 @@ lxc.group = onboot
 
 lxc.mount.entry = /var/cache/apt/archives \
 $ROOTFS/var/cache/apt/archives none bind 0 0
-lxc.mount.entry = $SHARED/deb $ROOTFS/$SHARED/deb none bind 0 0
-lxc.mount.entry = $SHARED/livestream $ROOTFS/$SHARED/livestream none bind 0 0
+lxc.mount.entry = $SHARED/deb $ROOTFS/usr/local/ej/deb none bind 0 0
+lxc.mount.entry = $SHARED/livestream \
+$ROOTFS/usr/local/ej/livestream none bind 0 0
 
 lxc.network.type = veth
 lxc.network.flags = up
@@ -111,7 +112,7 @@ lxc-attach -n ej-compiler -- \
      dpkg-buildpackage -rfakeroot -uc -b
      cd ..
      mv nginx-common_*.deb nginx-full_* nginx-extras_*.deb nginx-doc_*.deb \
-         $SHARED/deb/"
+         /usr/local/ej/deb/"
 
 # stop the compiler container
 lxc-stop -n ej-compiler
@@ -142,14 +143,14 @@ lxc-attach -n $MACH -- \
 	 gstreamer1.0-plugins-bad libgstreamer1.0-0 \
 	 libgstreamer-plugins-base1.0-0 libgstreamer-plugins-bad1.0-0 \
 	 gstreamer1.0-libav gstreamer1.0-alsa gstreamer1.0-x
-     dpkg -i $SHARED/deb/nginx-common_*.deb
-     dpkg -i $SHARED/deb/nginx-extras_*.deb
-     dpkg -i $SHARED/deb/nginx-doc_*.deb
+     dpkg -i /usr/local/ej/deb/nginx-common_*.deb
+     dpkg -i /usr/local/ej/deb/nginx-extras_*.deb
+     dpkg -i /usr/local/ej/deb/nginx-doc_*.deb
      apt-mark hold nginx-common nginx-extras nginx-doc
-     mkdir -p $SHARED/livestream/stat/
+     mkdir -p /usr/local/ej/livestream/stat/
      gunzip -c /usr/share/doc/nginx-doc/examples/rtmp_stat.xsl.gz > \
-         $SHARED/livestream/stat/rtmp_stat.xsl
-     chown www-data: $SHARED/livestream/stat -R"
+         /usr/local/ej/livestream/stat/rtmp_stat.xsl
+     chown www-data: /usr/local/ej/livestream/stat -R"
 
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
@@ -158,12 +159,9 @@ cp etc/cron.d/ej_hls_cleanup $ROOTFS/etc/cron.d/
 cp etc/nginx/nginx.conf $ROOTFS/etc/nginx/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/nginx.conf
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/etc/nginx/sites-available/default
 
 cp root/ej_scripts/livestream_cleanup.sh $ROOTFS/root/ej_scripts/
 cp root/ej_scripts/livestream_test.sh $ROOTFS/root/ej_scripts/
-sed -i "s~#SHARED#~$SHARED~g" $ROOTFS/root/ej_scripts/livestream_cleanup.sh
 chmod u+x $ROOTFS/root/ej_scripts/livestream_cleanup.sh
 chmod u+x $ROOTFS/root/ej_scripts/livestream_test.sh
 
