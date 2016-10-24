@@ -4,4 +4,5 @@ address=/ej-powerdns/172.22.22.102
 address=/ej-livestream-origin/172.22.22.103
 address=/ej-livestream-edge/172.22.22.104
 address=/ej-postgresql/172.22.22.105
+address=/ej-email/172.22.22.106
 address=/ej-jessie/172.22.22.254
