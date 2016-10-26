@@ -86,7 +86,7 @@ lxc-attach -n $MACH -- \
      apt-get install -y mariadb-server
      apt-get install -y apache2 libapache2-mod-php5 \
          php5-mysql php5-imap ssl-cert
-     apt-get install -y exim4-daemon-heavy
+     apt-get install -y exim4-daemon-heavy bsd-mailx
      apt-get install -y clamav-daemon clamav-freshclam \
          spamassassin --install-recommends'
 
