@@ -104,11 +104,11 @@ lxc-attach -n $MACH -- \
      /etc/exim4/update-exim4.conf.conf
 
      sed -i \
-     \"s/^dc_use_split_config*$/dc_use_split_config='true'/\" \
+     \"s/^dc_use_split_config.*$/dc_use_split_config='true'/\" \
      /etc/exim4/update-exim4.conf.conf
 
      sed -i \
-     \"s/^dc_localdelivery*$/dc_localdelivery='maildir_home'/\" \
+     \"s/^dc_localdelivery.*$/dc_localdelivery='maildir_home'/\" \
      /etc/exim4/update-exim4.conf.conf
 
      update-exim4.conf"
@@ -128,13 +128,13 @@ VEXIM_UID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f3)
 VEXIM_GID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f4)
 
 # vexim database
-VEXIM_PASSWD=`(echo -n $RANDOM$RANDOM; cat /proc/sys/kernel/random/uuid) | \
+VEXIM_DB_PASSWD=`(echo -n $RANDOM$RANDOM; cat /proc/sys/kernel/random/uuid) | \
     sha256sum | cut -c 1-20`
 
 lxc-attach -n $MACH -- mysql <<EOF
 CREATE DATABASE vexim DEFAULT CHARACTER SET utf8;
 CREATE USER 'vexim'@'127.0.0.1';
-SET PASSWORD FOR 'vexim'@'127.0.0.1' = PASSWORD('$VEXIM_PASSWD');
+SET PASSWORD FOR 'vexim'@'127.0.0.1' = PASSWORD('$VEXIM_DB_PASSWD');
 GRANT SELECT,INSERT,DELETE,UPDATE ON vexim.* to 'vexim'@'127.0.0.1';
 FLUSH PRIVILEGES;
 EOF
@@ -161,12 +161,20 @@ lxc-attach -n $MACH -- \
      mv /var/www/html/vexim/config/{variables.php.example,variables.php}'
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed -i 's/\(\s*\)\$sqlpass\s*=.*$/\1\$sqlpass = \"$VEXIM_PASSWD\";/' \
+    "sed -i 's/\(\s*\)\$sqlpass\s*=.*$/\1\$sqlpass = \"$VEXIM_DB_PASSWD\";/' \
          /var/www/html/vexim/config/variables.php
      sed -i 's/\(\s*\)\$uid\s*=.*$/\1\$uid = \"$VEXIM_UID\";/' \
          /var/www/html/vexim/config/variables.php
      sed -i 's/\(\s*\)\$gid\s*=.*$/\1\$gid = \"$VEXIM_GID\";/' \
          /var/www/html/vexim/config/variables.php"
+
+# customization for exim4
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "cp -r /tmp/vexim2/docs/debian-conf.d/* /etc/exim4/conf.d
+     sed 's/CHANGE/$VEXIM_DB_PASSWD/' \
+         /etc/exim4/conf.d/main/00_vexim_listmacrosdefs
+     update-exim4.conf"
 
 # remove repo
 rm -rf $ROOTFS/tmp/vexim2
