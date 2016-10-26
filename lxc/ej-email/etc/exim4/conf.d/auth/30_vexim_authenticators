@@ -1,0 +1,72 @@
+### 30_vexim_authenticators
+###########################
+
+plain_virtual_exim:
+        driver = plaintext
+        public_name = PLAIN
+        server_condition = ${if crypteq{$auth3}{${lookup mysql{ \
+                           SELECT crypt FROM users \
+                           WHERE username = '${quote_mysql:$auth2}' \
+                             AND enabled = 1 \
+                           }}}{1}{0}}
+        server_set_id = $auth2
+    .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
+      server_advertise_condition = ${if or{\
+        {!eq{$tls_cipher}{}}\
+        {match_ip {$sender_host_address}{@[]}}\
+        }\
+        {*}{}}
+    .endif
+
+login_virtual_exim:
+        driver = plaintext
+        public_name = LOGIN
+        server_prompts = "Username:: : Password::"
+
+        server_condition = ${if crypteq{$auth2}{${lookup mysql{ \
+                           SELECT crypt FROM users \
+                           WHERE username = '${quote_mysql:$auth1}' \
+                             AND enabled = 1 \
+                           }}}{1}{0}}
+        server_set_id = $auth1
+    .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
+      server_advertise_condition = ${if or{\
+        {!eq{$tls_cipher}{}}\
+        {match_ip {$sender_host_address}{@[]}}\
+        }\
+        {*}{}}
+    .endif
+
+
+# You can use the authenticator of your IMAP server (Dovecot or Courier) to authenticate
+# users in Exim. To do that, comment out the lines above and uncomment either the Dovecot
+# section below or the Courier section in 30_exim4-config_examples file.
+
+# Authenticate against Dovecot SASL
+# Based on: http://wiki2.dovecot.org/HowTo/EximAndDovecotSASL
+#
+# login_dovecot_sasl:
+#   driver = dovecot
+#   public_name = LOGIN
+#   server_socket = /var/run/dovecot/auth-client
+#   server_set_id = $auth1
+#   .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
+#     server_advertise_condition = ${if or{\
+#       {!eq{$tls_cipher}{}}\
+#       {match_ip {$sender_host_address}{@[]}}\
+#       }\
+#       {*}{}}
+#   .endif
+#
+# plain_dovecot_sasl:
+#   driver = dovecot
+#   public_name = PLAIN
+#   server_socket = /var/run/dovecot/auth-client
+#   server_set_id = $auth1
+#   .ifndef AUTH_SERVER_ALLOW_NOTLS_PASSWORDS
+#     server_advertise_condition = ${if or{\
+#       {!eq{$tls_cipher}{}}\
+#       {match_ip {$sender_host_address}{@[]}}\
+#       }\
+#       {*}{}}
+#   .endif

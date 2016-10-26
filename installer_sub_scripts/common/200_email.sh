@@ -169,10 +169,11 @@ lxc-attach -n $MACH -- \
          /var/www/html/vexim/config/variables.php"
 
 # customization for exim4
+cp -r etc/exim4/conf.d/*  $ROOTFS/etc/exim4/conf.d/
+
 lxc-attach -n $MACH -- \
     zsh -c \
-    "cp -r /tmp/vexim2/docs/debian-conf.d/* /etc/exim4/conf.d
-     sed 's/CHANGE/$VEXIM_DB_PASSWD/' \
+    "sed 's/CHANGE/$VEXIM_DB_PASSWD/' \
          /etc/exim4/conf.d/main/00_vexim_listmacrosdefs
      update-exim4.conf"
 
