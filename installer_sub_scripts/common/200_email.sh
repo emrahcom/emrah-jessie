@@ -181,6 +181,13 @@ lxc-attach -n $MACH -- \
 rm -rf $ROOTFS/tmp/vexim2
 
 # -----------------------------------------------------------------------------
+# APACHE2
+# -----------------------------------------------------------------------------
+cp var/www/html/index.html $ROOTFS/var/www/html/
+cp etc/apache2/conf-available/servername.conf \
+    $ROOTFS/etc/apache2/conf-available/
+
+# -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
 # public ssh
@@ -196,5 +203,11 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- a2ensite default-ssl.conf
+lxc-attach -n $MACH -- a2enconf servername
+lxc-attach -n $MACH -- a2enmod ssl
+lxc-attach -n $MACH -- systemctl reload apache2
+lxc-attach -n $MACH -- systemctl reload exim4
+
 lxc-attach -n $MACH -- reboot
 lxc-wait -n $MACH -s RUNNING
