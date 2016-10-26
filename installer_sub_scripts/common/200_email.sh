@@ -125,8 +125,8 @@ lxc-attach -n $MACH -- \
     zsh -c \
     'adduser --system --home /var/vmail --disabled-password --disabled-login \
              --group vexim'
-UID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f3)
-GID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f4)
+VEXIM_UID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f3)
+VEXIM_GID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f4)
 
 # vexim database
 VEXIM_PASSWD=`(echo -n $RANDOM$RANDOM; cat /proc/sys/kernel/random/uuid) | \
@@ -164,9 +164,9 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "sed -i 's/\$sqlpass.*$/\$sqlpass = \"$VEXIM_PASSWD\";/' \
          /var/www/html/vexim/config/variables.php
-     sed -i 's/\$uid.*$/\$uid = \"$UID\";/' \
+     sed -i 's/\$uid.*$/\$uid = \"$VEXIM_UID\";/' \
          /var/www/html/vexim/config/variables.php
-     sed -i 's/\$gid.*$/\$gid = \"$GID\";/' \
+     sed -i 's/\$gid.*$/\$gid = \"$VEXIM_GID\";/' \
          /var/www/html/vexim/config/variables.php"
 
 # -----------------------------------------------------------------------------
