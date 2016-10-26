@@ -35,7 +35,7 @@ MAIN_RELAY_TO_DOMAINS = MAIN_RELAY_TO_DOMAINS : ${lookup mysql{VEXIM_RELAY_DOMAI
 #.else
 #keep_environment =
 #.endif
-#.ifdef MAIN_ADD_ENVIRONMENT
+.ifdef MAIN_ADD_ENVIRONMENT
 add_environment = MAIN_ADD_ENVIRONMENT
 .endif
 
