@@ -173,7 +173,7 @@ cp -r etc/exim4/conf.d/*  $ROOTFS/etc/exim4/conf.d/
 
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed 's/CHANGE/$VEXIM_DB_PASSWD/' \
+    "sed -i 's/CHANGE/$VEXIM_DB_PASSWD/' \
          /etc/exim4/conf.d/main/00_vexim_listmacrosdefs
      update-exim4.conf"
 
