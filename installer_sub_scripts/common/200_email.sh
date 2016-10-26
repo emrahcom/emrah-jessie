@@ -117,7 +117,6 @@ lxc-attach -n $MACH -- \
 # VEXIM2
 # -----------------------------------------------------------------------------
 # clone vexim2 repo
-mkdir $ROOTFS/tmp/vexim2
 git clone --depth=1 https://github.com/vexim/vexim2.git $ROOTFS/tmp/vexim2
 
 # system user for virtual mailboxes
@@ -162,11 +161,11 @@ lxc-attach -n $MACH -- \
      mv /var/www/html/vexim/config/{variables.php.example,variables.php}'
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed -i 's/\$sqlpass.*$/\$sqlpass = \"$VEXIM_PASSWD\";/' \
+    "sed -i 's/\(\s*\)\$sqlpass\s*=.*$/\1\$sqlpass = \"$VEXIM_PASSWD\";/' \
          /var/www/html/vexim/config/variables.php
-     sed -i 's/\$uid.*$/\$uid = \"$VEXIM_UID\";/' \
+     sed -i 's/\(\s*\)\$uid\s*=.*$/\1\$uid = \"$VEXIM_UID\";/' \
          /var/www/html/vexim/config/variables.php
-     sed -i 's/\$gid.*$/\$gid = \"$VEXIM_GID\";/' \
+     sed -i 's/\(\s*\)\$gid\s*=.*$/\1\$gid = \"$VEXIM_GID\";/' \
          /var/www/html/vexim/config/variables.php"
 
 # remove repo
