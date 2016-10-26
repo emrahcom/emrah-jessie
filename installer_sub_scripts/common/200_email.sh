@@ -169,6 +169,9 @@ lxc-attach -n $MACH -- \
      sed -i 's/\$gid.*$/\$gid = \"$VEXIM_GID\";/' \
          /var/www/html/vexim/config/variables.php"
 
+# remove repo
+rm -rf $ROOTFS/tmp/vexim2
+
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
