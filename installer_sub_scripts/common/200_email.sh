@@ -134,8 +134,8 @@ VEXIM_DB_PASSWD=`(echo -n $RANDOM$RANDOM; cat /proc/sys/kernel/random/uuid) | \
 lxc-attach -n $MACH -- mysql <<EOF
 CREATE DATABASE vexim DEFAULT CHARACTER SET utf8;
 CREATE USER 'vexim'@'127.0.0.1';
-SET PASSWORD FOR 'vexim'@'127.0.0.1' = PASSWORD('$VEXIM_DB_PASSWD');
-GRANT SELECT,INSERT,DELETE,UPDATE ON vexim.* to 'vexim'@'127.0.0.1';
+SET PASSWORD FOR 'vexim'@'localhost' = PASSWORD('$VEXIM_DB_PASSWD');
+GRANT SELECT,INSERT,DELETE,UPDATE ON vexim.* to 'vexim'@'localhost';
 FLUSH PRIVILEGES;
 EOF
 
