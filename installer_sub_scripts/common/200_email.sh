@@ -114,6 +114,62 @@ lxc-attach -n $MACH -- \
      update-exim4.conf"
 
 # -----------------------------------------------------------------------------
+# VEXIM2
+# -----------------------------------------------------------------------------
+# clone vexim2 repo
+mkdir $ROOTFS/tmp/vexim2
+git clone --depth=1 https://github.com/vexim/vexim2.git $ROOTFS/tmp/vexim2
+
+# system user for virtual mailboxes
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'adduser --system --home /var/vmail --disabled-password --disabled-login \
+             --group vexim'
+UID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f3)
+GID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f4)
+
+# vexim database
+VEXIM_PASSWD=`(echo -n $RANDOM$RANDOM; cat /proc/sys/kernel/random/uuid) | \
+    sha256sum | cut -c 1-20`
+
+lxc-attach -n $MACH -- mysql <<EOF
+CREATE DATABASE vexim DEFAULT CHARACTER SET utf8;
+CREATE USER 'vexim'@'127.0.0.1';
+SET PASSWORD FOR 'vexim'@'127.0.0.1' = PASSWORD('$VEXIM_PASSWD');
+GRANT SELECT,INSERT,DELETE,UPDATE ON vexim.* to 'vexim'@'127.0.0.1';
+FLUSH PRIVILEGES;
+EOF
+
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'mysql vexim </tmp/vexim2/setup/mysql.sql >/tmp/secret'
+
+# vexim siteadmin account
+VEXIM_WEB_USER=$(egrep -i '^\s*user' $ROOTFS/tmp/secret | \
+                 cut -d ':' -f2 | xargs)
+VEXIM_WEB_PASSWD=$(egrep -i '^\s*password' $ROOTFS/tmp/secret | \
+                   cut -d ':' -f2 | xargs)
+rm $ROOTFS/tmp/secret
+echo VEXIM_WEB_USER="$VEXIM_WEB_USER" >> \
+    $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
+echo VEXIM_WEB_PASSWD="$VEXIM_WEB_PASSWD" >> \
+    $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/$INSTALLER/000_source
+
+# vexim site
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'cp -r /tmp/vexim2/vexim /var/www/html
+     mv /var/www/html/vexim/config/{variables.php.example,variables.php}'
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i 's/\$sqlpass.*$/\$sqlpass = \"$VEXIM_PASSWD\";/' \
+         /var/www/html/vexim/config/variables.php
+     sed -i 's/\$uid.*$/\$uid = \"$UID\";/' \
+         /var/www/html/vexim/config/variables.php
+     sed -i 's/\$gid.*$/\$gid = \"$GID\";/' \
+         /var/www/html/vexim/config/variables.php"
+
+# -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
 # public ssh
