@@ -72,6 +72,47 @@ lxc-attach -n $MACH -- apt-get update
 lxc-attach -n $MACH -- apt-get -y dist-upgrade
 lxc-attach -n $MACH -- apt-get autoclean
 
+# packages
+lxc-attach -n $MACH -- \
+    debconf-set-selections <<< \
+    'mysql-server mysql-server/root_password password'
+lxc-attach -n $MACH -- \
+    debconf-set-selections <<< \
+    'mysql-server mysql-server/root_password_again password'
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'export DEBIAN_FRONTEND=noninteractive
+     apt-get install -y iputils-ping
+     apt-get install -y mariadb-server
+     apt-get install -y apache2 libapache2-mod-php5 \
+         php5-mysql php5-imap ssl-cert
+     apt-get install -y exim4-daemon-heavy
+     apt-get install -y clamav-daemon clamav-freshclam \
+         spamassassin --install-recommends'
+
+# -----------------------------------------------------------------------------
+# EXIM4
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i \
+     \"s/^dc_eximconfig_configtype.*$/dc_eximconfig_configtype='internet'/\" \
+     /root/update-exim4.conf.conf
+
+     sed -i \
+     \"s/^dc_local_interfaces.*$/dc_local_interfaces=''/\" \
+     /root/update-exim4.conf.conf
+
+     sed -i \
+     \"s/^dc_use_split_config*$/dc_use_split_config='true'/\" \
+     /root/update-exim4.conf.conf
+
+     sed -i \
+     \"s/^dc_localdelivery*$/dc_localdelivery='maildir_home'/\" \
+     /root/update-exim4.conf.conf
+
+     update-exim4.conf"
+
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
