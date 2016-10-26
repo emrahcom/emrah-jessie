@@ -97,19 +97,19 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "sed -i \
      \"s/^dc_eximconfig_configtype.*$/dc_eximconfig_configtype='internet'/\" \
-     /root/update-exim4.conf.conf
+     /etc/exim4/update-exim4.conf.conf
 
      sed -i \
      \"s/^dc_local_interfaces.*$/dc_local_interfaces=''/\" \
-     /root/update-exim4.conf.conf
+     /etc/exim4/update-exim4.conf.conf
 
      sed -i \
      \"s/^dc_use_split_config*$/dc_use_split_config='true'/\" \
-     /root/update-exim4.conf.conf
+     /etc/exim4/update-exim4.conf.conf
 
      sed -i \
      \"s/^dc_localdelivery*$/dc_localdelivery='maildir_home'/\" \
-     /root/update-exim4.conf.conf
+     /etc/exim4/update-exim4.conf.conf
 
      update-exim4.conf"
 
