@@ -243,7 +243,7 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "sed -i 's/^#\s*\(Alias \/roundcube.*\)$/\1/' /etc/roundcube/apache.conf
      sed -i \"s/^\(\$config\['default_host'\]\)\s*=.*$/\1 = '127.0.0.1';/\" \
-         config.inc.php"
+         /etc/roundcube/config.inc.php"
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
