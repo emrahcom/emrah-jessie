@@ -81,7 +81,16 @@ lxc-attach -n $MACH -- \
     "debconf-set-selections <<< \
         'mysql-server mysql-server/root_password password'
      debconf-set-selections <<< \
-        'mysql-server mysql-server/root_password_again password'"
+        'mysql-server mysql-server/root_password_again password'
+     debconf-set-selections <<< \
+        'roundcube-core roundcube/dbconfig-install boolean true'
+     debconf-set-selections <<< \
+        'roundcube-core roundcube/database-type select mysql'
+     debconf-set-selections <<< \
+        'roundcube-core roundcube/mysql/admin-pass password'
+     debconf-set-selections <<< \
+        'roundcube-core roundcube/mysql/app-pass password'
+	     "
 lxc-attach -n $MACH -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
