@@ -213,7 +213,9 @@ lxc-attach -n $MACH -- \
      sed -i 's/^#!include auth-sql.conf.ext/!include auth-sql.conf.ext/' \
          /etc/dovecot/conf.d/10-auth.conf
      sed -i 's/^mail_location\s*=.*$/mail_location = maildir:~\/Maildir/' \
-         /etc/dovecot/conf.d/10-mail.conf"
+         /etc/dovecot/conf.d/10-mail.conf
+     sed -i 's/^\(ssl\s*=\s*no\)/#\1/' \
+         /etc/dovecot/conf.d/10-ssl.conf"
 
 lxc-attach -n $MACH -- \
     zsh -c \
@@ -234,6 +236,15 @@ user_query = \\\\
 iterate_query = \\\\
     SELECT username AS user \\\\
     FROM users
+EOF"
+
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
+
+ssl = yes
+ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
+ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
 EOF"
 
 # -----------------------------------------------------------------------------
