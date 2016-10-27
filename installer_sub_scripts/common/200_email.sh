@@ -77,11 +77,11 @@ lxc-attach -n $MACH -- apt-get autoclean
 
 # packages
 lxc-attach -n $MACH -- \
-    debconf-set-selections <<< \
-    'mysql-server mysql-server/root_password password'
-lxc-attach -n $MACH -- \
-    debconf-set-selections <<< \
-    'mysql-server mysql-server/root_password_again password'
+    zsh -c \
+    "debconf-set-selections <<< \
+        'mysql-server mysql-server/root_password password'
+     debconf-set-selections <<< \
+        'mysql-server mysql-server/root_password_again password'"
 lxc-attach -n $MACH -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
@@ -93,7 +93,9 @@ lxc-attach -n $MACH -- \
      apt-get install -y clamav-daemon clamav-freshclam \
          spamassassin --install-recommends
      apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
-         dovecot-mysql'
+         dovecot-mysql
+     apt-get install -dy roundcube-core roundcube-mysql \
+         roundcube-plugins --install-recommends'
 
 # -----------------------------------------------------------------------------
 # EXIM4
