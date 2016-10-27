@@ -197,7 +197,9 @@ lxc-attach -n $MACH -- \
     "sed -i 's/^!include auth-system.conf.ext/#!include auth-system.conf.ext/' \
          /etc/dovecot/conf.d/10-auth.conf
      sed -i 's/^#!include auth-sql.conf.ext/!include auth-sql.conf.ext/' \
-         /etc/dovecot/conf.d/10-auth.conf"
+         /etc/dovecot/conf.d/10-auth.conf
+     sed -i 's/^mail_location\s*=.*$/mail_location = maildir:~\/Maildir/' \
+         /etc/dovecot/conf.d/10-mail.conf"
 
 lxc-attach -n $MACH -- \
     zsh -c \
