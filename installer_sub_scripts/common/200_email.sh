@@ -67,6 +67,9 @@ lxc-wait -n $MACH -s RUNNING
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
+# Backports repo (for roundcube)
+cp etc/apt/sources.list.d/backports.list $ROOTFS/etc/apt/sources.list.d/
+
 # update
 lxc-attach -n $MACH -- apt-get update
 lxc-attach -n $MACH -- apt-get -y dist-upgrade
