@@ -177,7 +177,7 @@ lxc-attach -n $MACH -- \
          /etc/exim4/conf.d/main/00_vexim_listmacrosdefs
      update-exim4.conf"
 
-# remove repo
+# remove vexim2 repo
 rm -rf $ROOTFS/tmp/vexim2
 
 # -----------------------------------------------------------------------------
