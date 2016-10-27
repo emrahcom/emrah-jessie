@@ -102,7 +102,7 @@ lxc-attach -n $MACH -- \
      apt-get install -y clamav-daemon clamav-freshclam \
          spamassassin --install-recommends
      apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
-         dovecot-mysql
+         dovecot-mysql dovecot-managesieved
      apt-get install -y roundcube-core roundcube-mysql \
          roundcube-plugins --install-recommends'
 
@@ -255,8 +255,15 @@ lxc-attach -n $MACH -- \
     "sed -i 's/^#\s*\(Alias \/roundcube.*\)$/\1/' /etc/roundcube/apache.conf
      sed -i \"s/^\(\\\$config\['default_host'\]\)\s*=.*$/\1 = '127.0.0.1';/\" \
          /etc/roundcube/config.inc.php
+     sed -i \"s/^\(\s*\)'zipdownload',/\1'zipdownload',\n\1'managesieve',/\" \
+         /etc/roundcube/config.inc.php
      sed -i \"s/^\(\\\$config\['session_lifetime'\]\)\s*=.*$/\1 = 60;/\" \
          /etc/roundcube/defaults.inc.php"
+
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'cp /usr/share/roundcube/plugins/managesieve/config.inc.php.dist \
+         /etc/roundcube/plugins/managesieve/config.inc.php'
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
