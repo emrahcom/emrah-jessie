@@ -190,6 +190,37 @@ cp etc/apache2/conf-available/servername.conf \
     $ROOTFS/etc/apache2/conf-available/
 
 # -----------------------------------------------------------------------------
+# DOVECOT
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i 's/^!include auth-system.conf.ext/#!include auth-system.conf.ext/' \
+         /etc/dovecot/conf.d/10-auth.conf
+     sed -i 's/^#!include auth-sql.conf.ext/!include auth-sql.conf.ext/' \
+         /etc/dovecot/conf.d/10-auth.conf"
+
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "cat >> /etc/dovecot/dovecot-sql.conf.ext <<EOF
+
+driver = mysql
+connect = host=/var/run/mysqld/mysqld.sock dbname=vexim user=vexim password=$VEXIM_DB_PASSWD
+
+password_query = \
+    SELECT username AS user, crypt AS password \
+    FROM users \
+    WHERE username = '%u' AND enabled = 1
+user_query = \
+    SELECT pop AS home, uid, gid \
+    FROM users \
+    WHERE username = '%u'
+iterate_query = \
+    SELECT username AS user \
+    FROM users
+EOF"
+
+
+# -----------------------------------------------------------------------------
 # IPTABLES RULES
 # -----------------------------------------------------------------------------
 # public ssh
@@ -212,8 +243,9 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 lxc-attach -n $MACH -- a2ensite default-ssl.conf
 lxc-attach -n $MACH -- a2enconf servername
 lxc-attach -n $MACH -- a2enmod ssl
-lxc-attach -n $MACH -- systemctl reload apache2
-lxc-attach -n $MACH -- systemctl reload exim4
+lxc-attach -n $MACH -- systemctl reload apache2.service
+lxc-attach -n $MACH -- systemctl restart exim4.service
+lxc-attach -n $MACH -- systemctl restart dovecot.service
 
 lxc-attach -n $MACH -- reboot
 lxc-wait -n $MACH -s RUNNING
