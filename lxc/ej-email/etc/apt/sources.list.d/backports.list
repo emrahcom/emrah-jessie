@@ -1,2 +1,2 @@
-deb http://ftp.us.debian.org/debian/ jessie-backports main non-free contrib
-deb-src http://ftp.us.debian.org/debian/ jessie-backports main non-free contrib
+deb http://httpredir.debian.org/debian jessie-backports main non-free contrib
+deb-src http://httpredir.debian.org/debian jessie-backports main non-free contrib
