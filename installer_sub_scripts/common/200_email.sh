@@ -88,7 +88,9 @@ lxc-attach -n $MACH -- \
          php5-mysql php5-imap ssl-cert
      apt-get install -y exim4-daemon-heavy bsd-mailx
      apt-get install -y clamav-daemon clamav-freshclam \
-         spamassassin --install-recommends'
+         spamassassin --install-recommends
+     apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
+         dovecot-mysql'
 
 # -----------------------------------------------------------------------------
 # EXIM4
@@ -123,7 +125,7 @@ git clone --depth=1 https://github.com/vexim/vexim2.git $ROOTFS/tmp/vexim2
 lxc-attach -n $MACH -- \
     zsh -c \
     'adduser --system --home /var/vmail --disabled-password --disabled-login \
-             --group vexim'
+             --group --uid 500 vexim'
 VEXIM_UID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f3)
 VEXIM_GID=$(lxc-attach -n $MACH -- grep vexim /etc/passwd | cut -d':' -f4)
 
@@ -193,6 +195,10 @@ cp etc/apache2/conf-available/servername.conf \
 # public ssh
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SSH_PORT -j DNAT --to $IP:22 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SSH_PORT -j DNAT --to $IP:22
+
+# email
+iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25 || \
+iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25
 
 # web panel
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 80 -j DNAT --to $IP:80 || \
