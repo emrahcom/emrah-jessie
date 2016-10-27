@@ -206,6 +206,7 @@ lxc-attach -n $MACH -- \
     "cat >> /etc/dovecot/dovecot-sql.conf.ext <<EOF
 
 driver = mysql
+default_pass_scheme = CRYPT
 connect = host=/var/run/mysqld/mysqld.sock dbname=vexim user=vexim password=$VEXIM_DB_PASSWD
 
 password_query = \\\\
