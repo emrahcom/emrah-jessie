@@ -103,7 +103,7 @@ lxc-attach -n $MACH -- \
          spamassassin --install-recommends
      apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
          dovecot-mysql
-     apt-get install -dy roundcube-core roundcube-mysql \
+     apt-get install -y roundcube-core roundcube-mysql \
          roundcube-plugins --install-recommends'
 
 # -----------------------------------------------------------------------------
@@ -236,6 +236,14 @@ iterate_query = \\\\
     FROM users
 EOF"
 
+# -----------------------------------------------------------------------------
+# ROUNDCUBE
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i 's/^#\s*\(Alias \/roundcube.*\)$/\1/' /etc/roundcube/apache.conf
+     sed \"s/^\(\$config\['default_host'\]\)\s*=.*$/\1 = '127.0.0.1';/\" \
+         config.inc.php"
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
