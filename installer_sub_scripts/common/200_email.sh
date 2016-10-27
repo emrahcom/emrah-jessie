@@ -208,16 +208,16 @@ lxc-attach -n $MACH -- \
 driver = mysql
 connect = host=/var/run/mysqld/mysqld.sock dbname=vexim user=vexim password=$VEXIM_DB_PASSWD
 
-password_query = \
-    SELECT username AS user, crypt AS password \
-    FROM users \
+password_query = \\\\
+    SELECT username AS user, crypt AS password \\\\
+    FROM users \\\\
     WHERE username = '%u' AND enabled = 1
-user_query = \
-    SELECT pop AS home, uid, gid \
-    FROM users \
+user_query = \\\\
+    SELECT pop AS home, uid, gid \\\\
+    FROM users \\\\
     WHERE username = '%u'
-iterate_query = \
-    SELECT username AS user \
+iterate_query = \\\\
+    SELECT username AS user \\\\
     FROM users
 EOF"
 
