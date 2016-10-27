@@ -21,9 +21,6 @@ To install a containerized PowerDNS system, login a Debian Jessie host as `root`
 
 Available templates
 ===================
-### ej-base
-Install only a containerized Debian Jessie.
-
 ### ej-powerdns
 Install a ready-to-run DNS system. Main components are:
 * PowerDNS server with a PostgreSQL backend
@@ -37,6 +34,23 @@ Related links:
 * [PowerDNS] (https://github.com/PowerDNS/pdns)
 * [Poweradmin] (https://github.com/poweradmin/poweradmin)
 * [PostgreSQL] (https://www.postgresql.org/)
+
+### ej-email
+Install a ready-to-run email system. Main components are:
+* Exim4 with a MariaDB backend as SMTP server
+* Dovecot as IMAP/POP3 server
+* Roundcube as a webmail application
+* Vexim2 to manage the virtual mailboxes
+
+After install:
+* `https://<IP_ADDRESS>/vexim` to manage the virtual mailboxes
+* `https://<IP_ADDRESS>/roundcube` as a webmail application
+
+Related links:
+* [Exim] (http://www.exim.org/)
+* [Dovecot] (http://dovecot.org/)
+* [Roundcube] (https://roundcube.net/)
+* [Vexim2] (https://github.com/vexim/vexim2)
 
 ### ej-livestream
 Install a ready-to-run livestream system. Main components are:
@@ -55,6 +69,9 @@ Related links:
 * [nginx-rtmp-module] (https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) Sergey's repo
 * [video.js] (https://github.com/videojs/video.js)
 * [videojs-contrib-hls] (https://github.com/videojs/videojs-contrib-hls)
+
+### ej-base
+Install only a containerized Debian Jessie.
 
 Requirements
 ============
