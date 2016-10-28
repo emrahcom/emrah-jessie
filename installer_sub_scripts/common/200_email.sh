@@ -132,7 +132,9 @@ lxc-attach -n $MACH -- \
      echo \"SMTPLISTENEROPTIONS='-oX 465:25 -oP /var/run/exim4/exim.pid'\" >> \
      /etc/default/exim4
 
-     update-exim4.conf"
+     update-exim4.conf
+     adduser Debian-exim ssl-cert
+     systemctl restart exim4.service"
 
 # -----------------------------------------------------------------------------
 # VEXIM2
