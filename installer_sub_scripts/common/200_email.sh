@@ -127,6 +127,11 @@ lxc-attach -n $MACH -- \
      \"s/^dc_localdelivery.*$/dc_localdelivery='maildir_home'/\" \
      /etc/exim4/update-exim4.conf.conf
 
+     sed 's/^\(SMTPLISTENEROPTIONS.*\)$/#\1/' /etc/default/exim4
+
+     echo \"SMTPLISTENEROPTIONS='-oX 465:25 -oP /var/run/exim4/exim.pid'\" >> \
+     /etc/default/exim4
+
      update-exim4.conf"
 
 # -----------------------------------------------------------------------------
@@ -274,6 +279,9 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # smtp
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25
+# smtps
+iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465 || \
+iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465
 # pop3
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 110 -j DNAT --to $IP:110 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 110 -j DNAT --to $IP:110

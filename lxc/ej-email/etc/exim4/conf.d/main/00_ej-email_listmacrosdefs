@@ -1,0 +1,6 @@
+MAIN_TLS_ENABLE = true
+MAIN_TLS_ADVERTISE_HOSTS = *
+MAIN_TLS_CERTIFICATE = /etc/ssl/certs/ssl-cert-snakeoil.pem
+MAIN_TLS_PRIVATEKEY = /etc/ssl/private/ssl-cert-snakeoil.key
+MAIN_LOG_SELECTOR = +tls_cipher +tls_peerdn
+tls_on_connect_ports=465
