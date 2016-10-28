@@ -134,7 +134,7 @@ lxc-attach -n $MACH -- \
 
      sed 's/^\(SMTPLISTENEROPTIONS.*\)$/#\1/' /etc/default/exim4
 
-     echo \"SMTPLISTENEROPTIONS='-oX 465:25 -oP /var/run/exim4/exim.pid'\" >> \
+     echo \"SMTPLISTENEROPTIONS='-oX 25:587 -oP /var/run/exim4/exim.pid'\" >> \
      /etc/default/exim4
 
      update-exim4.conf
@@ -250,14 +250,14 @@ iterate_query = \\\\
     FROM users
 EOF"
 
-lxc-attach -n $MACH -- \
-    zsh -c \
-    "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
-
-ssl = yes
-ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
-ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
-EOF"
+#lxc-attach -n $MACH -- \
+#    zsh -c \
+#    "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
+#
+#ssl = yes
+#ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
+#ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
+#EOF"
 
 # -----------------------------------------------------------------------------
 # ROUNDCUBE
@@ -286,21 +286,15 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # smtp
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25
-# ssmtp
-iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465 || \
-iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465
+# smtp (starttls)
+iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 587 -j DNAT --to $IP:587 || \
+iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 587 -j DNAT --to $IP:587
 # pop3
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 110 -j DNAT --to $IP:110 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 110 -j DNAT --to $IP:110
-# pop3s
-iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 995 -j DNAT --to $IP:995 || \
-iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 995 -j DNAT --to $IP:995
 # imap
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 143 -j DNAT --to $IP:143 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 143 -j DNAT --to $IP:143
-# imaps
-iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 993 -j DNAT --to $IP:993 || \
-iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 993 -j DNAT --to $IP:993
 # web panel
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 80 -j DNAT --to $IP:80 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 80 -j DNAT --to $IP:80
