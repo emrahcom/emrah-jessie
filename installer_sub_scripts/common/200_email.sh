@@ -279,7 +279,7 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport $SS
 # smtp
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 25 -j DNAT --to $IP:25
-# smtps
+# ssmtp
 iptables -t nat -C PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465 || \
 iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 465 -j DNAT --to $IP:465
 # pop3
