@@ -64,6 +64,11 @@ EOF
 lxc-start -d -n $MACH
 lxc-wait -n $MACH -s RUNNING
 
+# FQDN sample
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "echo '127.0.1.1\t$MACH.mydomain.com $MACH' >>/etc/hosts"
+
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
