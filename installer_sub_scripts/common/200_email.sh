@@ -250,14 +250,14 @@ iterate_query = \\\\
     FROM users
 EOF"
 
-#lxc-attach -n $MACH -- \
-#    zsh -c \
-#    "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
-#
-#ssl = yes
-#ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
-#ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
-#EOF"
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
+
+ssl = yes
+ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
+ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
+EOF"
 
 # -----------------------------------------------------------------------------
 # ROUNDCUBE
