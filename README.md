@@ -45,6 +45,9 @@ Install a ready-to-run email system. Main components are:
 After install:
 * `https://<IP_ADDRESS>/vexim` to manage the virtual mailboxes
 * `https://<IP_ADDRESS>/roundcube` as a webmail application
+* SMTP: 25 (+STARTTLS) and 587 (+STARTTLS)
+* POP3: 110 (+STARTTLS)
+* IMAP: 143 (+STARTTLS)
 
 Related links:
 * [Exim] (http://www.exim.org/)
