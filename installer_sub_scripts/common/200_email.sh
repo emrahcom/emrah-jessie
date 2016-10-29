@@ -112,6 +112,14 @@ lxc-attach -n $MACH -- \
          roundcube-plugins --install-recommends'
 
 # -----------------------------------------------------------------------------
+# SSL
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'cp -ap /etc/ssl/certs/{ssl-cert-snakeoil.pem,ssl-ej-email.pem}
+     cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej-email.key}'
+
+# -----------------------------------------------------------------------------
 # EXIM4
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
@@ -215,6 +223,15 @@ cp var/www/html/index.html $ROOTFS/var/www/html/
 cp etc/apache2/conf-available/servername.conf \
     $ROOTFS/etc/apache2/conf-available/
 
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i 's/ssl-cert-snakeoil/ssl-ej-email/'
+         /etc/apache2/sites-available/default-ssl.conf"
+
+lxc-attach -n $MACH -- a2ensite default-ssl.conf
+lxc-attach -n $MACH -- a2enconf servername
+lxc-attach -n $MACH -- a2enmod ssl
+
 # -----------------------------------------------------------------------------
 # DOVECOT
 # -----------------------------------------------------------------------------
@@ -255,8 +272,8 @@ lxc-attach -n $MACH -- \
     "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
 
 ssl = yes
-ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem
-ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key
+ssl_cert = </etc/ssl/certs/ssl-ej-email.pem
+ssl_key = </etc/ssl/private/ssl-ej-email.key
 EOF"
 
 # -----------------------------------------------------------------------------
@@ -304,9 +321,6 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
-lxc-attach -n $MACH -- a2ensite default-ssl.conf
-lxc-attach -n $MACH -- a2enconf servername
-lxc-attach -n $MACH -- a2enmod ssl
 lxc-attach -n $MACH -- systemctl reload apache2.service
 lxc-attach -n $MACH -- systemctl restart exim4.service
 lxc-attach -n $MACH -- systemctl restart dovecot.service
