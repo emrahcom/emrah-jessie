@@ -225,7 +225,7 @@ cp etc/apache2/conf-available/servername.conf \
 
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed -i 's/ssl-cert-snakeoil/ssl-ej-email/'
+    "sed -i 's/ssl-cert-snakeoil/ssl-ej-email/' \
          /etc/apache2/sites-available/default-ssl.conf"
 
 lxc-attach -n $MACH -- a2ensite default-ssl.conf
