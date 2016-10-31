@@ -120,6 +120,17 @@ lxc-attach -n $MACH -- \
      cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej-email.key}'
 
 # -----------------------------------------------------------------------------
+# SPAMASSASSIN
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed 's/^CRON=.*$/CRON=1/' /etc/default/spamassassin
+
+     sa-update -v
+     systemctl enable spamassassin.service
+     systemctl start spamassassin.service"
+
+# -----------------------------------------------------------------------------
 # EXIM4
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
