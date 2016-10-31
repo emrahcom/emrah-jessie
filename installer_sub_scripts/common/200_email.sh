@@ -292,7 +292,7 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
 
-ssl = yes
+ssl = required
 ssl_cert = </etc/ssl/certs/ssl-ej-email.pem
 ssl_key = </etc/ssl/private/ssl-ej-email.key
 EOF"
