@@ -131,6 +131,15 @@ lxc-attach -n $MACH -- \
      systemctl start spamassassin.service"
 
 # -----------------------------------------------------------------------------
+# CLAMAV
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "adduser clamav Debian-exim
+     systemctl enable clamav-daemon.service
+     systemctl restart clamav-daemon.service"
+
+# -----------------------------------------------------------------------------
 # EXIM4
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \

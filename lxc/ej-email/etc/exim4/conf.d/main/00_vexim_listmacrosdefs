@@ -23,7 +23,7 @@ MAIN_RELAY_TO_DOMAINS = MAIN_RELAY_TO_DOMAINS : ${lookup mysql{VEXIM_RELAY_DOMAI
 #MAIN_TLS_ENABLE = true
 
 # enable av scanner
-#av_scanner = clamd:/var/run/clamav/clamd.ctl
+av_scanner = clamd:/var/run/clamav/clamd.ctl
 
 # use spamassassing
 spamd_address = 127.0.0.1 783
@@ -47,10 +47,8 @@ add_environment = MAIN_ADD_ENVIRONMENT
 # Comment this line if you want to disable it, instead of + you can use a different separator.
 VEXIM_LOCALPART_SUFFIX = +*
 
-# emrah-jessie : ej-email
-# the following lines are disabled for ej-email
-#CHECK_RCPT_LOCAL_ACL_FILE = /etc/exim4/vexim-acl-check-rcpt.conf
-#CHECK_DATA_LOCAL_ACL_FILE = /etc/exim4/vexim-acl-check-content.conf
+CHECK_RCPT_LOCAL_ACL_FILE = /etc/exim4/vexim-acl-check-rcpt.conf
+CHECK_DATA_LOCAL_ACL_FILE = /etc/exim4/vexim-acl-check-content.conf
 
 # Exim will put the detailed spam report into an X-Spam-Report header by default.
 # This report is really huge by default, but its template can be tweaked to make
