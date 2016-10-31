@@ -124,7 +124,7 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed 's/^CRON=.*$/CRON=1/' /etc/default/spamassassin
+    "sed -i 's/^CRON=.*$/CRON=1/' /etc/default/spamassassin
 
      sa-update -v
      systemctl enable spamassassin.service
@@ -343,6 +343,8 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- systemctl reload apache2.service
+lxc-attach -n $MACH -- systemctl restart spamassassin.service
+lxc-attach -n $MACH -- systemctl restart clamav-daemon.service
 lxc-attach -n $MACH -- systemctl restart exim4.service
 lxc-attach -n $MACH -- systemctl restart dovecot.service
 
