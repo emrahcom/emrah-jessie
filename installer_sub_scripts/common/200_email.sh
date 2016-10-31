@@ -225,6 +225,7 @@ lxc-attach -n $MACH -- \
          /var/www/html/vexim/config/variables.php"
 
 # customization for exim4
+cp etc/exim4/vexim-acl-*.conf  $ROOTFS/etc/exim4/
 cp -r etc/exim4/conf.d/*  $ROOTFS/etc/exim4/conf.d/
 
 lxc-attach -n $MACH -- \
