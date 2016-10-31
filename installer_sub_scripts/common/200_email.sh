@@ -160,7 +160,7 @@ lxc-attach -n $MACH -- \
      \"s/^dc_localdelivery.*$/dc_localdelivery='maildir_home'/\" \
      /etc/exim4/update-exim4.conf.conf
 
-     sed 's/^\(SMTPLISTENEROPTIONS.*\)$/#\1/' /etc/default/exim4
+     sed -i 's/^\(SMTPLISTENEROPTIONS.*\)$/#\1/' /etc/default/exim4
 
      echo \"SMTPLISTENEROPTIONS='-oX 25:587 -oP /var/run/exim4/exim.pid'\" >> \
      /etc/default/exim4
