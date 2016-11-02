@@ -3,6 +3,28 @@ Table of contents
 
 - [About](#about)
 - [Usage](#usage)
+- [Example](#example)
+- [Available templates](#available-templates)
+    - [ej-powerdns](#ej-powerdns)
+        - [Main components of ej-powerdns](#main-components-of-ej-powerdns)
+        - [To install ej-powerdns](#to-install-ej-powerdns)
+        - [After install ej-powerdns](#after-install-ej-powerdns)
+        - [Related links to ej-powerdns](#related-links-to-ej-powerdns)
+    - [ej-email](#ej-email)
+        - [Main components of ej-email](#main-components-of-ej-email)
+        - [To install ej-email](#to-install-ej-email)
+        - [After install ej-email](#after-install-ej-email)
+        - [Related links to ej-email](#related-links-to-ej-email)
+    - [ej-livestream](#ej-livestream)
+        - [Main components of ej-livestream](#main-components-of-ej-livestream)
+        - [To install ej-livestream](#to-install-ej-livestream)
+        - [After install ej-livestream](#after-install-ej-livestream)
+        - [Related links to ej-livestream](#related-links-to-ej-livestream)
+    - [ej-base](#ej-base)
+        - [To install ej-base](#to-install-ej-base)
+- [Requirements](#requirements)
+
+---
 
 About
 =====
