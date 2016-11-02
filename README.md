@@ -10,8 +10,8 @@ Download the installer, run it with a template name as an argument and drink a
 coffee. That's it.
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej <TEMPLATE_NAME>
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej <TEMPLATE_NAME>
 ```
 
 Example
@@ -21,8 +21,8 @@ To install a containerized PowerDNS system, login a Debian Jessie host as
 `root` and
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej ej-powerdns
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-powerdns
 ```
 
 Available templates
@@ -41,8 +41,8 @@ Install a ready-to-use DNS system.
 ### To install ej-powerdns
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej ej-powerdns
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-powerdns
 ```
 
 ### After install ej-powerdns
@@ -73,8 +73,8 @@ Install a ready-to-use email system.
 ### To install ej-email
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej ej-email
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-email
 ```
 
 ### After install ej-email
@@ -112,8 +112,8 @@ Install a ready-to-use livestream system.
 ### To install ej-livestream
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej ej-livestream
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-livestream
 ```
 
 ### After install ej-livestream
@@ -149,8 +149,8 @@ Install only a containerized Debian Jessie.
 ### To install ej-base
 
 ```bash
-# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-# bash ej ej-base
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-base
 ```
 
 ---
