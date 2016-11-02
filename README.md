@@ -8,6 +8,7 @@ Usage
 
 Download the installer, run it with a template name as an argument and drink a
 coffee. That's it.
+
 ```
 # wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
 # bash ej <TEMPLATE_NAME>
@@ -18,6 +19,7 @@ Example
 
 To install a containerized PowerDNS system, login a Debian Jessie host as
 `root` and
+
 ```
 # wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
 # bash ej ej-powerdns
@@ -29,7 +31,10 @@ Available templates
 ej-powerdns
 -----------
 
-Install a ready-to-use DNS system. Main components are:
+Install a ready-to-use DNS system.
+
+### Main components of ej-powerdns
+
 - PowerDNS server with a PostgreSQL backend
 - Poweradmin - the web based control panel for PowerDNS
 
@@ -56,7 +61,10 @@ Install a ready-to-use DNS system. Main components are:
 ej-email
 --------
 
-Install a ready-to-use email system. Main components are:
+Install a ready-to-use email system.
+
+### Main components of ej-email
+
 - Exim4 with a MariaDB backend as SMTP server
 - Dovecot as IMAP/POP3 server
 - Roundcube as a webmail application
@@ -89,11 +97,16 @@ Install a ready-to-use email system. Main components are:
 ej-livestream
 -------------
 
-Install a ready-to-use livestream system. Main components are:
+Install a ready-to-use livestream system.
+
+### Main components of ej-livestream
+
 -  Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP
    stream and convert it to HLS.
+
 -  Nginx server with standart modules as a stream edge. It publish the HLS
    stream.
+
 -  Web based video player
 
 ### To install ej-livestream
@@ -106,18 +119,24 @@ Install a ready-to-use livestream system. Main components are:
 ### After install ej-livestream
 
 -  `rtmp://<IP_ADDRESS>/livestream/<CHANNEL_NAME>` to push a stream (H264/AAC)
+
 -  `http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8` to pull the HLS
    stream
+
 -  `http://<IP_ADDRESS>/livestream/channel/<CHANNEL_NAME>` for the video player
    page
+
 -  `http://<IP_ADDRESS>:10080/livestream/status` for the RTMP status page
 
 ### Related links to ej-livestream
 
 -  [nginx-rtmp-module] (https://github.com/arut/nginx-rtmp-module) Arut's repo
+
 -  [nginx-rtmp-module] (https://github.com/sergey-dryabzhinsky/nginx-rtmp-module)
    Sergey's repo
+
 -  [video.js] (https://github.com/videojs/video.js)
+
 -  [videojs-contrib-hls] (https://github.com/videojs/videojs-contrib-hls)
 
 ---
@@ -147,7 +166,10 @@ Please, use one of the followings as a host:
 -  a cloud host from a hosting/cloud service
    ([Digital Ocean](https://www.digitalocean.com/?refcode=92b0165840d8)'s
    droplet, [Amazon](https://console.aws.amazon.com) EC2 instance etc)
+
 -  a virtual machine (VMware, VirtualBox etc)
+
 -  a Debian Jessie container
+
 -  a physical machine with a fresh installed [Debian Jessie]
    (https://www.debian.org/distrib/netinst)
