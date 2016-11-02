@@ -26,6 +26,12 @@ Install a ready-to-run DNS system. Main components are:
 * PowerDNS server with a PostgreSQL backend
 * Poweradmin - the web based control panel for PowerDNS
 
+To install:
+```
+	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+	# bash ej ej-powerdns
+```
+
 After install:
 * `http://<IP_ADDRESS>/poweradmin` to access the DNS control panel
 * `https://<IP_ADDRESS>/poweradmin` to access the DNS control panel via HTTPS
@@ -41,6 +47,12 @@ Install a ready-to-run email system. Main components are:
 * Dovecot as IMAP/POP3 server
 * Roundcube as a webmail application
 * Vexim2 to manage the virtual mailboxes
+
+To install:
+```
+	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+	# bash ej ej-email
+```
 
 After install:
 * `https://<IP_ADDRESS>/vexim` to manage the virtual mailboxes
@@ -61,6 +73,12 @@ Install a ready-to-run livestream system. Main components are:
 * Nginx server with standart modules as a stream edge. It publish the HLS stream.
 * Web based video player
 
+To install:
+```
+	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+	# bash ej ej-livestream
+```
+
 After install:
 * `rtmp://<IP_ADDRESS>/livestream/<CHANNEL_NAME>` to push a stream (H264/AAC)
 * `http://<IP_ADDRESS>/livestream/hls/<CHANNEL_NAME>.m3u8` to pull the HLS stream
@@ -75,6 +93,12 @@ Related links:
 
 ### ej-base
 Install only a containerized Debian Jessie.
+
+To install:
+```
+	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+	# bash ej ej-base
+```
 
 Requirements
 ============
