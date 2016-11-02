@@ -6,7 +6,8 @@ Jessie host. It built on top of LXC (Linux containers).
 Usage
 =====
 
-Download the installer, run it with a template name as an argument and drink a coffee. That's it.
+Download the installer, run it with a template name as an argument and drink a
+coffee. That's it.
 ```
 	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
 	# bash ej <TEMPLATE_NAME>
@@ -15,7 +16,8 @@ Download the installer, run it with a template name as an argument and drink a c
 Example
 =======
 
-To install a containerized PowerDNS system, login a Debian Jessie host as `root` and
+To install a containerized PowerDNS system, login a Debian Jessie host as
+`root` and
 ```
 	# wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
 	# bash ej ej-powerdns
@@ -88,9 +90,11 @@ ej-livestream
 -------------
 
 Install a ready-to-run livestream system. Main components are:
-- Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP stream and convert it to HLS.
-- Nginx server with standart modules as a stream edge. It publish the HLS stream.
-- Web based video player
+-  Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP
+   stream and convert it to HLS.
+-  Nginx server with standart modules as a stream edge. It publish the HLS
+   stream.
+-  Web based video player
 
 ### To install ej-livestream
 
@@ -132,8 +136,15 @@ Install only a containerized Debian Jessie.
 Requirements
 ============
 
-`emrah-jessie` requires a Debian Jessie host with a minimal install and Internet access during the installation. It's not a good idea to use your desktop machine or an already in-use production server as a host machine. Please, use one of the followings as a host:
-- a cloud host from a hosting/cloud service ([Digital Ocean](https://www.digitalocean.com/?refcode=92b0165840d8)'s droplet, [Amazon](https://console.aws.amazon.com) EC2 instance etc)
-- a virtual machine (VMware, VirtualBox etc)
-- a Debian Jessie container
-- a physical machine with a fresh installed [Debian Jessie] (https://www.debian.org/distrib/netinst)
+`emrah-jessie` requires a Debian Jessie host with a minimal install and
+Internet access during the installation. It's not a good idea to use your
+desktop machine or an already in-use production server as a host machine.
+Please, use one of the followings as a host:
+
+-  a cloud host from a hosting/cloud service
+   ([Digital Ocean](https://www.digitalocean.com/?refcode=92b0165840d8)'s
+   droplet, [Amazon](https://console.aws.amazon.com) EC2 instance etc)
+-  a virtual machine (VMware, VirtualBox etc)
+-  a Debian Jessie container
+-  a physical machine with a fresh installed [Debian Jessie]
+   (https://www.debian.org/distrib/netinst)
