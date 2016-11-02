@@ -29,7 +29,7 @@ Available templates
 ej-powerdns
 -----------
 
-Install a ready-to-run DNS system. Main components are:
+Install a ready-to-use DNS system. Main components are:
 - PowerDNS server with a PostgreSQL backend
 - Poweradmin - the web based control panel for PowerDNS
 
@@ -56,7 +56,7 @@ Install a ready-to-run DNS system. Main components are:
 ej-email
 --------
 
-Install a ready-to-run email system. Main components are:
+Install a ready-to-use email system. Main components are:
 - Exim4 with a MariaDB backend as SMTP server
 - Dovecot as IMAP/POP3 server
 - Roundcube as a webmail application
@@ -89,7 +89,7 @@ Install a ready-to-run email system. Main components are:
 ej-livestream
 -------------
 
-Install a ready-to-run livestream system. Main components are:
+Install a ready-to-use livestream system. Main components are:
 -  Nginx server with nginx-rtmp-module as a stream origin. It gets the RTMP
    stream and convert it to HLS.
 -  Nginx server with standart modules as a stream edge. It publish the HLS
