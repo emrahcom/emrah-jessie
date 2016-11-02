@@ -1,7 +1,7 @@
 About
 =====
-`emrah-jessie` is an installer to create the containerized systems on Debian Jessie host.
-It built on top of LXC (Linux containers).
+> `emrah-jessie` is an installer to create the containerized systems on Debian
+> Jessie host. It built on top of LXC (Linux containers).
 
 Usage
 =====
