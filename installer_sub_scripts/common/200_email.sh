@@ -104,7 +104,7 @@ lxc-attach -n $MACH -- \
      apt-get install -y apache2 libapache2-mod-php5 \
          php5-mysql php5-imap ssl-cert
      apt-get install -y exim4-daemon-heavy bsd-mailx
-     apt-get install -y clamav-daemon clamav-freshclam \
+     apt-get install -y clamav-daemon clamav-freshclam libclamunrar7 \
          spamassassin --install-recommends
      apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
          dovecot-mysql dovecot-managesieved
