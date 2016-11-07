@@ -131,6 +131,16 @@ lxc-attach -n $MACH -- \
      systemctl start spamassassin.service"
 
 # -----------------------------------------------------------------------------
+# FRESHCLAM
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "systemctl stop clamav-freshclam.service
+     freshclam
+     systemctl start clamav-freshclam.service"
+
+
+# -----------------------------------------------------------------------------
 # CLAMAV
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
