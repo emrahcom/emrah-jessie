@@ -88,7 +88,7 @@ lxc-attach -n ej-compiler -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
      apt-get install -y ffmpeg
-     apt-get build-dep -y nginx-extras'
+     apt-get build-dep -y nginx'
 
 # nginx RTMP module
 REPO="https://github.com/sergey-dryabzhinsky/nginx-rtmp-module/archive"
