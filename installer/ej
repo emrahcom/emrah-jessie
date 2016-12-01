@@ -19,6 +19,7 @@ export FREE_SPACE_NEEDED="1000000"
 export START_TIME=`date +%s`
 export DATE=`date +"%Y%m%d%H%M%S"`
 export GIT_REPO="https://github.com/emrahcom/emrah-jessie.git"
+export GIT_BRANCH="master"
 export GIT_LOCAL_DIR="emrah-jessie"
 export RELEASE="jessie"
 export BASEDIR=`pwd`
@@ -89,7 +90,7 @@ then
 	apt-get install -y git
 
 	rm -rf $GIT_LOCAL_DIR
-	git clone --depth=1 $GIT_REPO $GIT_LOCAL_DIR
+	git clone --depth=1 -b $GIT_BRANCH $GIT_REPO $GIT_LOCAL_DIR
 fi
 
 # -----------------------------------------------------------------------------
