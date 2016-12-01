@@ -136,7 +136,8 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
-     apt-get install -y libgd3 libluajit-5.1-2 libperl5.20 libxslt1.1
+     apt-get install -y liblua5.1-0 libluajit-5.1-2 libperl5.20
+     apt-get install -y libgd3 libxslt1.1
      apt-get install -y ffmpeg
      apt-get install -y gstreamer1.0-tools gstreamer1.0-plugins-base \
          gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly \
