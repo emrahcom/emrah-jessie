@@ -50,8 +50,12 @@ lxc-attach -n ej-compiler -- \
          debian/help/examples/rtmp_stat.xsl
      dpkg-buildpackage -rfakeroot -uc -b
      cd ..
-     mv nginx-common_*.deb nginx-full_* nginx-extras_*.deb nginx-doc_*.deb \
-         /usr/local/ej/deb/"
+     rm -f /usr/local/ej/deb/nginx-common_*.deb
+     rm -f /usr/local/ej/deb/nginx-full_*.deb
+     rm -f /usr/local/ej/deb/nginx-extras_*.deb
+     rm -f /usr/local/ej/deb/nginx-doc_*.deb
+     mv nginx-common_*.deb nginx-full_*.deb nginx-extras_*.deb \
+         nginx-doc_*.deb /usr/local/ej/deb/"
 
 # stop the compiler container
 lxc-stop -n ej-compiler
