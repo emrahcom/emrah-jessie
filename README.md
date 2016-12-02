@@ -28,6 +28,11 @@ Table of contents
         - [To install ej-powerdns](#to-install-ej-powerdns)
         - [After install ej-powerdns](#after-install-ej-powerdns)
         - [Related links to ej-powerdns](#related-links-to-ej-powerdns)
+    - [ej-waf](#ej-waf)
+        - [Main components of ej-waf](#main-components-of-ej-waf)
+        - [To install ej-waf](#to-install-ej-waf)
+        - [After install ej-waf](#after-install-ej-waf)
+        - [Related links to ej-waf](#related-links-to-ej-waf)
 - [Requirements](#requirements)
 
 ---
