@@ -184,6 +184,35 @@ bash ej ej-powerdns
 
 ---
 
+ej-waf
+-----------
+
+Install a ready-to-use WAF (Web Application Firewall) system.
+
+### Main components of ej-waf
+
+- lua-resty-waf - High-performance WAF built on the OpenResty stack
+- Nginx as proxy server
+
+### To install ej-waf
+
+```bash
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-waf
+```
+
+### After install ej-waf
+
+-  Edit `/etc/nginx/conf.d/upstream.conf` file in `ej-waf` container to set
+   the backend server
+
+### Related links to ej-waf
+
+- [lua-resty-waf] (https://github.com/p0pr0ck5/lua-resty-waf)
+- [Nginx] (http://nginx.org/)
+
+---
+
 Requirements
 ============
 
