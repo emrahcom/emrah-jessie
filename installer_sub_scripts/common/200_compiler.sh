@@ -94,7 +94,8 @@ lxc-attach -n $MACH -- \
     'export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
      apt-get install -y dpkg-dev build-essential git
-     apt-get install -y ca-certificates fakeroot unzip'
+     apt-get install -y ca-certificates fakeroot unzip
+     apt-get install -y python'
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
