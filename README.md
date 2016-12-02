@@ -197,7 +197,7 @@ Install a ready-to-use WAF (Web Application Firewall) system.
 ### Main components of ej-waf
 
 - lua-resty-waf - High-performance WAF built on the OpenResty stack
-- Nginx as proxy server
+- Nginx as the proxy server
 
 ### To install ej-waf
 
@@ -209,7 +209,7 @@ bash ej ej-waf
 ### After install ej-waf
 
 -  Edit `/etc/nginx/conf.d/upstream.conf` file in `ej-waf` container to set
-   the backend server
+   your backend server
 
 ### Related links to ej-waf
 
