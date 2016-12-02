@@ -11,11 +11,8 @@ Table of contents
 - [Usage](#usage)
 - [Example](#example)
 - [Available templates](#available-templates)
-    - [ej-powerdns](#ej-powerdns)
-        - [Main components of ej-powerdns](#main-components-of-ej-powerdns)
-        - [To install ej-powerdns](#to-install-ej-powerdns)
-        - [After install ej-powerdns](#after-install-ej-powerdns)
-        - [Related links to ej-powerdns](#related-links-to-ej-powerdns)
+    - [ej-base](#ej-base)
+        - [To install ej-base](#to-install-ej-base)
     - [ej-email](#ej-email)
         - [Main components of ej-email](#main-components-of-ej-email)
         - [To install ej-email](#to-install-ej-email)
@@ -26,8 +23,11 @@ Table of contents
         - [To install ej-livestream](#to-install-ej-livestream)
         - [After install ej-livestream](#after-install-ej-livestream)
         - [Related links to ej-livestream](#related-links-to-ej-livestream)
-    - [ej-base](#ej-base)
-        - [To install ej-base](#to-install-ej-base)
+    - [ej-powerdns](#ej-powerdns)
+        - [Main components of ej-powerdns](#main-components-of-ej-powerdns)
+        - [To install ej-powerdns](#to-install-ej-powerdns)
+        - [After install ej-powerdns](#after-install-ej-powerdns)
+        - [Related links to ej-powerdns](#related-links-to-ej-powerdns)
 - [Requirements](#requirements)
 
 ---
@@ -57,33 +57,17 @@ bash ej ej-powerdns
 Available templates
 ===================
 
-ej-powerdns
------------
+ej-base
+-------
 
-Install a ready-to-use DNS system.
+Install only a containerized Debian Jessie.
 
-### Main components of ej-powerdns
-
-- PowerDNS server with a PostgreSQL backend
-- Poweradmin - the web based control panel for PowerDNS
-
-### To install ej-powerdns
+### To install ej-base
 
 ```bash
 wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-bash ej ej-powerdns
+bash ej ej-base
 ```
-
-### After install ej-powerdns
-
-- `http://<IP_ADDRESS>/poweradmin` to access the DNS control panel
-- `https://<IP_ADDRESS>/poweradmin` to access the DNS control panel via HTTPS
-
-### Related links to ej-powerdns
-
-- [PowerDNS] (https://github.com/PowerDNS/pdns)
-- [Poweradmin] (https://github.com/poweradmin/poweradmin)
-- [PostgreSQL] (https://www.postgresql.org/)
 
 ---
 
@@ -170,17 +154,33 @@ bash ej ej-livestream
 
 ---
 
-ej-base
--------
+ej-powerdns
+-----------
 
-Install only a containerized Debian Jessie.
+Install a ready-to-use DNS system.
 
-### To install ej-base
+### Main components of ej-powerdns
+
+- PowerDNS server with a PostgreSQL backend
+- Poweradmin - the web based control panel for PowerDNS
+
+### To install ej-powerdns
 
 ```bash
 wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
-bash ej ej-base
+bash ej ej-powerdns
 ```
+
+### After install ej-powerdns
+
+- `http://<IP_ADDRESS>/poweradmin` to access the DNS control panel
+- `https://<IP_ADDRESS>/poweradmin` to access the DNS control panel via HTTPS
+
+### Related links to ej-powerdns
+
+- [PowerDNS] (https://github.com/PowerDNS/pdns)
+- [Poweradmin] (https://github.com/poweradmin/poweradmin)
+- [PostgreSQL] (https://www.postgresql.org/)
 
 ---
 
