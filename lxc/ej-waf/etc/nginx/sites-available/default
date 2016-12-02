@@ -14,6 +14,34 @@ server_name _;
 root /var/www/html;
 index index.html index.htm;
 
+# -----------------------------------------------------------------------------
+# lua-resty-waf
+# -----------------------------------------------------------------------------
+access_by_lua '
+	local lua_resty_waf = require "waf"
+	local waf = lua_resty_waf:new()
+	-- waf:set_option("ignore_rule", 90002)
+	waf:exec()
+';
+header_filter_by_lua '
+	local lua_resty_waf = require "waf"
+	local waf = lua_resty_waf:new()
+	waf:exec()
+';
+body_filter_by_lua '
+	local lua_resty_waf = require "waf"
+	local waf = lua_resty_waf:new()
+	waf:exec()
+';
+log_by_lua '
+	local lua_resty_waf = require "waf"
+	local waf = lua_resty_waf:new()
+	waf:write_log_events()
+';
+
+# -----------------------------------------------------------------------------
+# backend
+# -----------------------------------------------------------------------------
 location / {
 	# update /etc/nginx/conf.d/upstream.conf to set your backend server
 	proxy_pass http://backend;
