@@ -93,7 +93,7 @@ lxc-attach -n $MACH -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
-     apt-get install -y dpkg-dev build-essential fakeroot unzip'
+     apt-get install -y dpkg-dev build-essential git fakeroot unzip'
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES
