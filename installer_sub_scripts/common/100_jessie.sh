@@ -84,7 +84,6 @@ lxc-attach -n $MACH -- apt-get install -y dbus libpam-systemd
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
 # changed/added system files
-cp /etc/hosts $ROOTFS/etc/
 cp etc/ssh/ssh_config $ROOTFS/etc/ssh/
 cp etc/ssh/sshd_config $ROOTFS/etc/ssh/
 
