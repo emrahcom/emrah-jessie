@@ -253,7 +253,7 @@ rm -rf $ROOTFS/tmp/vexim2
 cp var/www/html/index.html $ROOTFS/var/www/html/
 cp etc/apache2/conf-available/servername.conf \
     $ROOTFS/etc/apache2/conf-available/
-cp etc/apache2/sites-available/000-default.conf
+cp etc/apache2/sites-available/000-default.conf \
     $ROOTFS/etc/apache2/sites-available/
 
 lxc-attach -n $MACH -- \
