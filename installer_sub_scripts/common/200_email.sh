@@ -277,7 +277,15 @@ lxc-attach -n $MACH -- \
      sed -i 's/^mail_location\s*=.*$/mail_location = maildir:~\/Maildir/' \
          /etc/dovecot/conf.d/10-mail.conf
      sed -i 's/^\(ssl\s*=\s*no\)/#\1/' \
-         /etc/dovecot/conf.d/10-ssl.conf"
+         /etc/dovecot/conf.d/10-ssl.conf
+     sed -i '/\s*mailbox Drafts {/a \    auto = subscribe' \
+         /etc/dovecot/conf.d/15-mailboxes.conf
+     sed -i '/\s*mailbox Junk {/a \    auto = subscribe' \
+         /etc/dovecot/conf.d/15-mailboxes.conf
+     sed -i '/\s*mailbox Trash {/a \    auto = subscribe' \
+         /etc/dovecot/conf.d/15-mailboxes.conf
+     sed -i '/\s*mailbox Sent {/a \    auto = subscribe' \
+         /etc/dovecot/conf.d/15-mailboxes.conf"
 
 lxc-attach -n $MACH -- \
     zsh -c \
