@@ -23,10 +23,14 @@ MAIN_RELAY_TO_DOMAINS = MAIN_RELAY_TO_DOMAINS : ${lookup mysql{VEXIM_RELAY_DOMAI
 #MAIN_TLS_ENABLE = true
 
 # enable av scanner
-av_scanner = clamd:/var/run/clamav/clamd.ctl
+# emrah-jessie : ej-email
+# the following line is disabled for ej-email
+#av_scanner = clamd:/var/run/clamav/clamd.ctl
 
 # use spamassassing
-spamd_address = 127.0.0.1 783
+# emrah-jessie : ej-email
+# the following line is disabled for ej-email
+#spamd_address = 127.0.0.1 783
 
 # emrah-jessie : ej-email
 # the following lines are disabled for ej-email
