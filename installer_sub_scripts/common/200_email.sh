@@ -232,6 +232,8 @@ lxc-attach -n $MACH -- \
      sed -i 's/\(\s*\)\$uid\s*=.*$/\1\$uid = \"$VEXIM_UID\";/' \
          /var/www/html/vexim/config/variables.php
      sed -i 's/\(\s*\)\$gid\s*=.*$/\1\$gid = \"$VEXIM_GID\";/' \
+         /var/www/html/vexim/config/variables.php
+     sed -i 's/\(\s*\)\(\$passwordstrengthcheck\)\s*=.*$/\1\2 = 0;/' \
          /var/www/html/vexim/config/variables.php"
 
 # customization for exim4
