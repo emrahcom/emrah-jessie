@@ -87,6 +87,8 @@ Install a ready-to-use email system.
 - Dovecot as IMAP/POP3 server
 - Roundcube as a webmail application
 - Vexim2 to manage the virtual mailboxes
+- SpamAssassin as a spam filter
+- ClamAV as a virus scanner
 
 ### To install ej-email
 
@@ -109,6 +111,8 @@ bash ej ej-email
 - [Dovecot] (http://dovecot.org/)
 - [Roundcube] (https://roundcube.net/)
 - [Vexim2] (https://github.com/vexim/vexim2)
+- [SpamAssassin] (https://spamassassin.apache.org/)
+- [ClamAV] (https://www.clamav.net/)
 
 ---
 
