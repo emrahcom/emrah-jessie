@@ -69,7 +69,10 @@ ditch_spam:
     driver = redirect
     allow_fail
     file_transport = virtual_ditch_spam_transport
-    data = ${lookup mysql{select concat(smtp,'/.Spam') \
+    # emrah-jessie : ej-email
+    # the following line is changed by ej-email
+    #data = ${lookup mysql{select concat(smtp,'/.Spam') \
+    data = ${lookup mysql{select concat(smtp,'/.Junk') \
         from users,domains \
         where localpart = '${quote_mysql:$local_part}' \
         and domain = '${quote_mysql:$domain}' \
