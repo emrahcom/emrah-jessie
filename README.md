@@ -17,6 +17,7 @@ Table of contents
         - [Main components of ej-email](#main-components-of-ej-email)
         - [To install ej-email](#to-install-ej-email)
         - [After install ej-email](#after-install-ej-email)
+        - [Let’s Encrypt and Certbot](#lets-encrypt-and-certbot)
         - [Related links to ej-email](#related-links-to-ej-email)
     - [ej-livestream](#ej-livestream)
         - [Main components of ej-livestream](#main-components-of-ej-livestream)
@@ -109,7 +110,7 @@ bash ej ej-email
 
 ### Let’s Encrypt and Certbot
 
-To use Let's Encrypt certificate, connect to ej-email container and
+To use Let's Encrypt certificate, connect to ej-email container as root and
 
 ```bash
 certbot certonly --webroot -w /var/www/html -d your.host.name
