@@ -103,7 +103,31 @@ bash ej ej-email
 - `https://<IP_ADDRESS>/roundcube` as a webmail application
 - SMTP: 25 (+STARTTLS) and 587 (+STARTTLS)
 - POP3: 110 (+STARTTLS)
+- POP3S: 995 (SSL/TLS)
 - IMAP: 143 (+STARTTLS)
+- IMAPS: 993 (SSL/TLS)
+
+### Let’s Encrypt and Certbot
+
+To use Let's Encrypt certificate, connect to ej-email container and
+
+```bash
+certbot certonly --webroot -w /var/www/html -d your.host.name
+
+chmod 750 /etc/letsencrypt/{archive,live}
+chown root:ssl-cert /etc/letsencrypt/{archive,live}
+mv /etc/ssl/certs/{ssl-ej-email.pem,ssl-ej-email.pem.bck}
+mv /etc/ssl/private/{ssl-ej-email.key,ssl-ej-email.key.bck}
+ln -s /etc/letsencrypt/live/your.host.name/fullchain.pem \
+    /etc/ssl/certs/ssl-ej-email.pem
+ln -s /etc/letsencrypt/live/your.host.name/privkey.pem \
+    /etc/ssl/private/ssl-ej-email.key
+
+systemctl restart exim4.service
+systemctl restart dovecot.service
+systemctl restart apache2.service
+```
+
 
 ### Related links to ej-email
 
@@ -113,6 +137,8 @@ bash ej ej-email
 - [Vexim2] (https://github.com/vexim/vexim2)
 - [SpamAssassin] (https://spamassassin.apache.org/)
 - [ClamAV] (https://www.clamav.net/)
+- [Let's Encrypt] (https://letsencrypt.org/)
+- [Certbot] (https://certbot.eff.org/)
 
 ---
 
