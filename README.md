@@ -113,15 +113,15 @@ bash ej ej-email
 To use Let's Encrypt certificate, connect to ej-email container as root and
 
 ```bash
-certbot certonly --webroot -w /var/www/html -d your.host.name
+certbot certonly --webroot -w /var/www/html -d your.host.fqdn
 
 chmod 750 /etc/letsencrypt/{archive,live}
 chown root:ssl-cert /etc/letsencrypt/{archive,live}
 mv /etc/ssl/certs/{ssl-ej-email.pem,ssl-ej-email.pem.bck}
 mv /etc/ssl/private/{ssl-ej-email.key,ssl-ej-email.key.bck}
-ln -s /etc/letsencrypt/live/your.host.name/fullchain.pem \
+ln -s /etc/letsencrypt/live/your.host.fqdn/fullchain.pem \
     /etc/ssl/certs/ssl-ej-email.pem
-ln -s /etc/letsencrypt/live/your.host.name/privkey.pem \
+ln -s /etc/letsencrypt/live/your.host.fqdn/privkey.pem \
     /etc/ssl/private/ssl-ej-email.key
 
 systemctl restart exim4.service
