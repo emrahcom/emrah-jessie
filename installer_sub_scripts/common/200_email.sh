@@ -109,7 +109,8 @@ lxc-attach -n $MACH -- \
      apt-get install -y dovecot-core dovecot-imapd dovecot-pop3d \
          dovecot-mysql dovecot-managesieved
      apt-get install -y roundcube-core roundcube-mysql \
-         roundcube-plugins --install-recommends'
+         roundcube-plugins --install-recommends
+     apt-get install -y -t jessie-backports certbot'
 
 # -----------------------------------------------------------------------------
 # SSL
