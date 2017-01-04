@@ -159,8 +159,8 @@ Install a ready-to-use self-hosted Git service.
 
 ### Main components of ej-gogs
 
-- Git
 - Gogs
+- Git
 - Nginx
 - MariaDB
 
@@ -199,8 +199,8 @@ systemctl restart nginx.service
 
 ### Related links to ej-gogs
 
-- [Git] (https://git-scm.com/)
 - [Gogs] (https://gogs.io/)
+- [Git] (https://git-scm.com/)
 - [Nginx] (http://nginx.org/)
 - [MariaDB] (https://mariadb.org/)
 - [Let's Encrypt] (https://letsencrypt.org/)
