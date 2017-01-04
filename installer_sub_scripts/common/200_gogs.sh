@@ -82,7 +82,7 @@ lxc-attach -n $MACH -- \
     "export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
      apt-get install -y apt-transport-https
-     apt-get install -y nginx-extras ssl-cert"
+     apt-get install -y nginx-extras ssl-cert ca-certificates"
 lxc-attach -n $MACH -- \
     zsh -c \
     "export DEBIAN_FRONTEND=noninteractive
