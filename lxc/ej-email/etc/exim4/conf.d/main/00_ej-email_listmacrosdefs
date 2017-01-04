@@ -1,5 +1,5 @@
 MAIN_TLS_ENABLE = true
 MAIN_TLS_ADVERTISE_HOSTS = *
-MAIN_TLS_CERTIFICATE = /etc/ssl/certs/ssl-ej-email.pem
-MAIN_TLS_PRIVATEKEY = /etc/ssl/private/ssl-ej-email.key
+MAIN_TLS_CERTIFICATE = /etc/ssl/certs/ssl-ej.pem
+MAIN_TLS_PRIVATEKEY = /etc/ssl/private/ssl-ej.key
 MAIN_LOG_SELECTOR = +tls_cipher +tls_peerdn

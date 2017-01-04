@@ -116,8 +116,8 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
     zsh -c \
-    'cp -ap /etc/ssl/certs/{ssl-cert-snakeoil.pem,ssl-ej-email.pem}
-     cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej-email.key}'
+    'cp -ap /etc/ssl/certs/{ssl-cert-snakeoil.pem,ssl-ej.pem}
+     cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej.key}'
 
 # -----------------------------------------------------------------------------
 # SPAMASSASSIN
@@ -259,7 +259,7 @@ cp etc/apache2/sites-available/000-default.conf \
 
 lxc-attach -n $MACH -- \
     zsh -c \
-    "sed -i 's/ssl-cert-snakeoil/ssl-ej-email/' \
+    "sed -i 's/ssl-cert-snakeoil/ssl-ej/' \
          /etc/apache2/sites-available/default-ssl.conf"
 
 lxc-attach -n $MACH -- a2ensite default-ssl.conf
@@ -315,8 +315,8 @@ lxc-attach -n $MACH -- \
     "cat >> /etc/dovecot/conf.d/10-ssl.conf <<EOF
 
 ssl = required
-ssl_cert = </etc/ssl/certs/ssl-ej-email.pem
-ssl_key = </etc/ssl/private/ssl-ej-email.key
+ssl_cert = </etc/ssl/certs/ssl-ej.pem
+ssl_key = </etc/ssl/private/ssl-ej.key
 EOF"
 
 # -----------------------------------------------------------------------------
