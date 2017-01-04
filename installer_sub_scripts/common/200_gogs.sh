@@ -79,9 +79,16 @@ lxc-attach -n $MACH -- apt-get autoclean
 # packages
 lxc-attach -n $MACH -- \
     zsh -c \
+    "debconf-set-selections <<< \
+        'mysql-server mysql-server/root_password password'
+     debconf-set-selections <<< \
+        'mysql-server mysql-server/root_password_again password'"
+lxc-attach -n $MACH -- \
+    zsh -c \
     "export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
      apt-get install -y apt-transport-https
+     apt-get install -y mariadb-server
      apt-get install -y nginx-extras ssl-cert ca-certificates"
 lxc-attach -n $MACH -- \
     zsh -c \
