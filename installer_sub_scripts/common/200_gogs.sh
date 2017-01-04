@@ -100,6 +100,13 @@ lxc-attach -n $MACH -- \
      apt-get install -y gogs --install-recommends"
 
 # -----------------------------------------------------------------------------
+# GOGS
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- mysql <<EOF
+CREATE DATABASE gogs DEFAULT CHARACTER SET utf8;
+EOF
+
+# -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
