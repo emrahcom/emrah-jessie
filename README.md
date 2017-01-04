@@ -125,12 +125,12 @@ certbot certonly --webroot -w /var/www/html -d $FQDN
 
 chmod 750 /etc/letsencrypt/{archive,live}
 chown root:ssl-cert /etc/letsencrypt/{archive,live}
-mv /etc/ssl/certs/{ssl-ej-email.pem,ssl-ej-email.pem.bck}
-mv /etc/ssl/private/{ssl-ej-email.key,ssl-ej-email.key.bck}
+mv /etc/ssl/certs/{ssl-ej.pem,ssl-ej.pem.bck}
+mv /etc/ssl/private/{ssl-ej.key,ssl-ej.key.bck}
 ln -s /etc/letsencrypt/live/$FQDN/fullchain.pem \
-    /etc/ssl/certs/ssl-ej-email.pem
+    /etc/ssl/certs/ssl-ej.pem
 ln -s /etc/letsencrypt/live/$FQDN/privkey.pem \
-    /etc/ssl/private/ssl-ej-email.key
+    /etc/ssl/private/ssl-ej.key
 
 systemctl restart exim4.service
 systemctl restart dovecot.service
