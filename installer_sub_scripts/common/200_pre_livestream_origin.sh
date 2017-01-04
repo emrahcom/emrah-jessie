@@ -27,6 +27,7 @@ lxc-attach -n ej-compiler -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
      apt-get install -y ffmpeg
+     apt-get install -y ca-certificates
      apt-get build-dep -y nginx'
 
 # nginx RTMP module
@@ -39,7 +40,7 @@ lxc-attach -n ej-compiler -- \
      cd /root/source
      rm -rf nginx_* nginx-*
      apt-get source nginx-extras
-     wget --no-check-certificate $REPO/$ZIP -O $ZIP
+     wget $REPO/$ZIP -O $ZIP
      unzip master.zip
      mv nginx-rtmp-module-master nginx-1.6.2/debian/modules/nginx-rtmp-module
      sed -i '/nginx-upstream-fair/a \

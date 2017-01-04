@@ -94,15 +94,14 @@ lxc-attach -n $MACH -- \
      debconf-set-selections <<< \
         'roundcube-core roundcube/mysql/admin-pass password'
      debconf-set-selections <<< \
-        'roundcube-core roundcube/mysql/app-pass password'
-	     "
+        'roundcube-core roundcube/mysql/app-pass password'"
 lxc-attach -n $MACH -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
      apt-get install -y mariadb-server
      apt-get install -y apache2 libapache2-mod-php5 \
-         php5-mysql php5-imap ssl-cert
+         php5-mysql php5-imap ssl-cert ca-certificates
      apt-get install -y exim4-daemon-heavy heirloom-mailx
      apt-get install -y clamav-daemon clamav-freshclam libclamunrar7 \
          spamassassin --install-recommends

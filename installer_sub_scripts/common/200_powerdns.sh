@@ -87,7 +87,7 @@ lxc-attach -n $MACH -- \
      apt-get install -y pdns-server pdns-backend-pgsql
      apt-get install -y apache2 libapache2-mod-php5 \
          php5 php5-mcrypt php-pear php-mdb2 php-mdb2-driver-pgsql php5-pgsql \
-	 ssl-cert'
+	 ssl-cert ca-certificates'
 
 # -----------------------------------------------------------------------------
 # POWERADMIN
