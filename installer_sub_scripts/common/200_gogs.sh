@@ -71,6 +71,9 @@ lxc-wait -n $MACH -s RUNNING
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
+# Backports repo (for certbot)
+cp etc/apt/sources.list.d/backports.list $ROOTFS/etc/apt/sources.list.d/
+
 # update
 lxc-attach -n $MACH -- apt-get update
 lxc-attach -n $MACH -- apt-get -y dist-upgrade
@@ -89,7 +92,8 @@ lxc-attach -n $MACH -- \
      apt-get install -y iputils-ping
      apt-get install -y apt-transport-https
      apt-get install -y mariadb-server
-     apt-get install -y nginx-extras ssl-cert ca-certificates"
+     apt-get install -y nginx-extras ssl-cert ca-certificates
+     apt-get install -y -t jessie-backports certbot"
 lxc-attach -n $MACH -- \
     zsh -c \
     "export DEBIAN_FRONTEND=noninteractive

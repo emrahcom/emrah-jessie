@@ -72,7 +72,7 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
-# Backports repo (for roundcube)
+# Backports repo (for roundcube and certbot)
 cp etc/apt/sources.list.d/backports.list $ROOTFS/etc/apt/sources.list.d/
 
 # update
