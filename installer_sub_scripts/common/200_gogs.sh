@@ -107,12 +107,21 @@ CREATE DATABASE gogs DEFAULT CHARACTER SET utf8;
 EOF
 
 # -----------------------------------------------------------------------------
+# SSL
+# -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- \
+    zsh -c \
+    'cp -ap /etc/ssl/certs/{ssl-cert-snakeoil.pem,ssl-ej.pem}
+     cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej.key}'
+
+# -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy_buffer.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/sites-available/default $ROOTFS/etc/nginx/sites-available/
+cp etc/nginx/snippets/ej_ssl.conf $ROOTFS/etc/nginx/snippets/
 
 # -----------------------------------------------------------------------------
 # IPTABLES RULES

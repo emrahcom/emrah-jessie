@@ -17,8 +17,14 @@ Table of contents
         - [Main components of ej-email](#main-components-of-ej-email)
         - [To install ej-email](#to-install-ej-email)
         - [After install ej-email](#after-install-ej-email)
-        - [Let’s Encrypt and Certbot](#lets-encrypt-and-certbot)
+        - [SSL certificate for ej-email](#ssl-certificate-for-ej-email)
         - [Related links to ej-email](#related-links-to-ej-email)
+    - [ej-gogs](#ej-gogs)
+        - [Main components of ej-gogs](#main-components-of-ej-gogs)
+        - [To install ej-gogs](#to-install-ej-gogs)
+        - [After install ej-gogs](#after-install-ej-gogs)
+        - [SSL certificate for ej-gogs](#ssl-certificate-for-ej-gogs)
+        - [Related links to ej-gogs](#related-links-to-ej-gogs)
     - [ej-livestream](#ej-livestream)
         - [Main components of ej-livestream](#main-components-of-ej-livestream)
         - [To install ej-livestream](#to-install-ej-livestream)
@@ -108,7 +114,7 @@ bash ej ej-email
 - IMAP: 143 (+STARTTLS)
 - IMAPS: 993 (SSL/TLS)
 
-### Let’s Encrypt and Certbot
+### SSL certificate for ej-email
 
 To use Let's Encrypt certificate, connect to ej-email container as root and
 
@@ -140,6 +146,63 @@ systemctl restart apache2.service
 - [Vexim2] (https://github.com/vexim/vexim2)
 - [SpamAssassin] (https://spamassassin.apache.org/)
 - [ClamAV] (https://www.clamav.net/)
+- [MariaDB] (https://mariadb.org/)
+- [Let's Encrypt] (https://letsencrypt.org/)
+- [Certbot] (https://certbot.eff.org/)
+
+---
+
+ej-gogs
+--------
+
+Install a ready-to-use self-hosted Git service.
+
+### Main components of ej-gogs
+
+- Git
+- Gogs
+- Nginx
+- MariaDB
+
+### To install ej-gogs
+
+```bash
+wget https://raw.githubusercontent.com/emrahcom/emrah-jessie/master/installer/ej
+bash ej ej-gogs
+```
+
+### After install ej-gogs
+
+- `https://<IP_ADDRESS>/` to manage Git service.
+
+### SSL certificate for ej-gogs
+
+To use Let's Encrypt certificate, connect to ej-gogs container as root and
+
+```bash
+FQDN="your.host.fqdn"
+
+certbot certonly --webroot -w /var/www/html -d $FQDN
+
+chmod 750 /etc/letsencrypt/{archive,live}
+chown root:ssl-cert /etc/letsencrypt/{archive,live}
+mv /etc/ssl/certs/{ssl-ej.pem,ssl-ej.pem.bck}
+mv /etc/ssl/private/{ssl-ej.key,ssl-ej.key.bck}
+ln -s /etc/letsencrypt/live/$FQDN/fullchain.pem \
+    /etc/ssl/certs/ssl-ej.pem
+ln -s /etc/letsencrypt/live/$FQDN/privkey.pem \
+    /etc/ssl/private/ssl-ej.key
+
+systemctl restart nginx.service
+```
+
+
+### Related links to ej-gogs
+
+- [Git] (https://git-scm.com/)
+- [Gogs] (https://gogs.io/)
+- [Nginx] (http://nginx.org/)
+- [MariaDB] (https://mariadb.org/)
 - [Let's Encrypt] (https://letsencrypt.org/)
 - [Certbot] (https://certbot.eff.org/)
 

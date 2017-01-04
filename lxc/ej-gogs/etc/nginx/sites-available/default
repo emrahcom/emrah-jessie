@@ -8,7 +8,7 @@ listen [::]:80 default_server;
 
 listen 443 ssl default_server;
 listen [::]:443 ssl default_server;
-include snippets/snakeoil.conf;
+include snippets/ej_ssl.conf;
 
 server_name _;
 root /var/www/html;
