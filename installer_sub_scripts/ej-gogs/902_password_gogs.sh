@@ -1,0 +1,1 @@
+../common/900_password_gogs.sh

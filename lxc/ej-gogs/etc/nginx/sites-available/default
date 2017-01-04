@@ -1,0 +1,24 @@
+# -----------------------------------------------------------------------------
+# DEFAULT SERVER
+# -----------------------------------------------------------------------------
+server {
+
+listen 80 default_server;
+listen [::]:80 default_server;
+
+listen 443 ssl default_server;
+listen [::]:443 ssl default_server;
+include snippets/snakeoil.conf;
+
+server_name _;
+root /var/www/html;
+index index.html index.htm;
+
+# -----------------------------------------------------------------------------
+# gogs
+# -----------------------------------------------------------------------------
+location / {
+	proxy_pass http://127.0.0.1:3000;
+}
+
+} # server_end
