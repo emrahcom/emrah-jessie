@@ -115,7 +115,8 @@ lxc-attach -n $MACH -- \
     "sed -i 's/^\(SSH_PORT\s*=\).*$/\1 $SSH_PORT/' /etc/gogs/conf/app.ini
      sed -i 's/^\(DOMAIN\s*=\).*$/\1 your.domain.name/' /etc/gogs/conf/app.ini
      sed -i 's/^\(ROOT_URL\s*=\).*$/\1 https:\/\/%(DOMAIN)s\//' \
-         /etc/gogs/conf/app.ini"
+         /etc/gogs/conf/app.ini
+     sed -i 's/^\(FORCE_PRIVATE\s*=\).*$/\1 true/' /etc/gogs/conf/app.ini"
 
 # -----------------------------------------------------------------------------
 # SSL
