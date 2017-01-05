@@ -173,7 +173,25 @@ bash ej ej-gogs
 
 ### After install ej-gogs
 
-- `https://<IP_ADDRESS>/` to manage Git service.
+-  Access `https://<IP_ADDRESS>/` to finish the installation process. Easy!
+
+-  **Password**: There is no password for the database. So, leave it blank!
+   Don't worry, only the local user can connect to the database server.
+
+-  **Domain**: Write your host FQDN or IP address. Example:
+   *git.mydomain.com*  *123.2.3.4*
+
+-  **SSH Port**: Leave the default value which is the SSH port of the
+   container.
+
+-  **HTTP Port**: Leave the default value which is the internal port of Gogs
+   service.
+
+-  **Application URL**: Write your URL. HTTP and HTTPS are OK. Example:
+   *https://git.mydomain.com/*  *https://123.2.3.4/*
+
+-  The first registered user will be the administrator.
+
 
 ### SSL certificate for ej-gogs
 
