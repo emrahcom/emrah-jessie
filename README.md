@@ -178,7 +178,7 @@ bash ej ej-gogs
 -  **Password**: There is no password for the database. So, leave it blank!
    Don't worry, only the local user can connect to the database server.
 
--  **Domain**: Write your host FQDN or IP address. Example:
+-  **Domain**: Write your host FQDN or IP address. Examples:
    *git.mydomain.com*  *123.2.3.4*
 
 -  **SSH Port**: Leave the default value which is the SSH port of the
@@ -187,7 +187,7 @@ bash ej ej-gogs
 -  **HTTP Port**: Leave the default value which is the internal port of Gogs
    service.
 
--  **Application URL**: Write your URL. HTTP and HTTPS are OK. Example:
+-  **Application URL**: Write your URL. HTTP and HTTPS are OK. Examples:
    *https://git.mydomain.com/*  *https://123.2.3.4/*
 
 -  The first registered user will be the administrator.
