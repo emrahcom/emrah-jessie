@@ -110,6 +110,13 @@ lxc-attach -n $MACH -- mysql <<EOF
 CREATE DATABASE gogs DEFAULT CHARACTER SET utf8;
 EOF
 
+lxc-attach -n $MACH -- \
+    zsh -c \
+    "sed -i 's/^\(SSH_PORT\s*=\).*$/\1 $SSH_PORT/' /etc/gogs/conf/app.ini
+     sed -i 's/^\(DOMAIN\s*=\).*$/\1 your.domain.name/' /etc/gogs/conf/app.ini
+     sed -i 's/^\(ROOT_URL\s*=\).*$/\1 https:\/\/%(DOMAIN)s\//' \
+         /etc/gogs/conf/app.ini"
+
 # -----------------------------------------------------------------------------
 # SSL
 # -----------------------------------------------------------------------------
