@@ -155,7 +155,8 @@ systemctl restart apache2.service
 ej-gogs
 --------
 
-Install a ready-to-use self-hosted Git service.
+Install a ready-to-use self-hosted Git service. Only AMD64 architecture is
+supported for this template.
 
 ### Main components of ej-gogs
 
