@@ -55,11 +55,19 @@ lxc-attach -n ej-compiler -- \
      LUA_LIB_DIR=/usr/local/ej/share/lua/5.1 make install
 
      cd /root/source
+     git clone https://github.com/openresty/opm.git
+     sed -i 's/\(if (\$name eq .luajit.) {\)/\1 return;/' opm/bin/opm
+     mkdir opm/site
+
+     cd /root/source
      git clone --recursive https://github.com/p0pr0ck5/lua-resty-waf.git
      cd lua-resty-waf
      make
-     LUA_LIB_DIR=/usr/local/ej/share/lua/5.1 make install-hard
+     LUA_LIB_DIR=/usr/local/ej/share/lua/5.1 \
+         OPENRESTY_PREFIX=/root/source/opm make install
      mv /usr/local/ej/share/lua/5.1/{libac,libinjection}.so \
+         /usr/local/ej/share/lua/5.1/resty/
+     cp -arp /root/source/opm/site/lualib/resty/* \
          /usr/local/ej/share/lua/5.1/resty/"
 
 # stop the compiler container
