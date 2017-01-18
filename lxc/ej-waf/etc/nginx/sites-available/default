@@ -20,7 +20,14 @@ index index.html index.htm;
 access_by_lua '
 	local lua_resty_waf = require "waf"
 	local waf = lua_resty_waf:new()
+
+	waf:set_option("mode", "ACTIVE")
+	-- waf:set_option("mode", "INACTIVE")
+	-- waf:set_option("mode", "SIMULATE")
+	-- waf:set_option("disable_pcre_optimization", true)
+	waf:set_option("score_threshold", 5)
 	-- waf:set_option("ignore_rule", 90002)
+
 	waf:exec()
 ';
 header_filter_by_lua '
