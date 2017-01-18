@@ -28,6 +28,13 @@ access_by_lua '
 	waf:set_option("score_threshold", 5)
 	-- waf:set_option("ignore_rule", 90002)
 
+	waf:set_option("event_log_target", "file")
+	waf:set_option("event_log_target_path", "/var/log/nginx/waf.log")
+	waf:set_option("event_log_buffer_size", 8192)
+	waf:set_option("event_log_verbosity", 3)
+	waf:set_option("event_log_periodic_flush", 60)
+	waf:set_option("event_log_ngx_vars", "host")
+
 	waf:exec()
 ';
 header_filter_by_lua '
