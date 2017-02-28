@@ -25,7 +25,7 @@ location /.well-known {
 # gogs
 # -----------------------------------------------------------------------------
 location / {
-	proxy_pass http://127.0.0.1:3000;
+	proxy_pass http://127.0.0.1:6000;
 }
 
 } # server_end
