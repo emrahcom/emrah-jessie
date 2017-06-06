@@ -65,8 +65,7 @@ lxc-attach -n ej-compiler -- \
      make
      LUA_LIB_DIR=/usr/local/ej/share/lua/5.1 \
          OPENRESTY_PREFIX=/root/source/opm make install
-     mv /usr/local/ej/share/lua/5.1/{libac,libinjection}.so \
-         /usr/local/ej/share/lua/5.1/resty/
+     mv /usr/local/ej/share/lua/5.1/*.so /usr/local/ej/share/lua/5.1/resty/
      cp -arp /root/source/opm/site/lualib/resty/* \
          /usr/local/ej/share/lua/5.1/resty/"
 
