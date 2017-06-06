@@ -85,7 +85,7 @@ lxc-attach -n $MACH -- \
     zsh -c \
     "export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
-     apt-get install -y nginx-extras ssl-cert lua-cjson"
+     apt-get install -y nginx-extras ssl-cert lua-cjson lua-rex-pcre"
 
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
