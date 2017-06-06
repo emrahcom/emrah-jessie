@@ -26,7 +26,7 @@ lxc-wait -n ej-compiler -s RUNNING
 lxc-attach -n ej-compiler -- \
     zsh -c \
     'export DEBIAN_FRONTEND=noninteractive
-     apt-get install -y liblua5.1-0-dev'
+     apt-get install -y liblua5.1-0-dev luarocks libpcre3-dev'
 
 # lua-resty-waf
 lxc-attach -n ej-compiler -- \
