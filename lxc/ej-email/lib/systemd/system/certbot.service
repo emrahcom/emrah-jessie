@@ -1,0 +1,12 @@
+[Unit]
+Description=Certbot
+Documentation=file:///usr/share/doc/python-certbot-doc/html/index.html
+Documentation=https://letsencrypt.readthedocs.io/en/latest/
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/perl -e 'sleep int(rand(3600))'
+ExecStart=/usr/bin/certbot -q renew
+ExecStart=/bin/systemctl reload exim4.service
+ExecStart=/bin/systemctl reload dovecot.service
+ExecStart=/bin/systemctl reload apache2.service
+PrivateTmp=true

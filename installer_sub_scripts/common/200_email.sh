@@ -120,6 +120,11 @@ lxc-attach -n $MACH -- \
      cp -ap /etc/ssl/private/{ssl-cert-snakeoil.key,ssl-ej.key}'
 
 # -----------------------------------------------------------------------------
+# CERTBOT
+# -----------------------------------------------------------------------------
+cp lib/systemd/system/certbot.service $ROOTFS/lib/systemd/system/
+
+# -----------------------------------------------------------------------------
 # SPAMASSASSIN
 # -----------------------------------------------------------------------------
 lxc-attach -n $MACH -- \
@@ -370,6 +375,7 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- systemctl daemon-reload
 lxc-attach -n $MACH -- systemctl reload apache2.service
 lxc-attach -n $MACH -- systemctl restart spamassassin.service
 lxc-attach -n $MACH -- systemctl restart clamav-daemon.service
