@@ -73,8 +73,11 @@ lxc-wait -n $MACH -s RUNNING
 # -----------------------------------------------------------------------------
 # Backports repo (for certbot)
 cp etc/apt/sources.list.d/backports.list $ROOTFS/etc/apt/sources.list.d/
+cp etc/apt/sources.list.d/mariadb.list $ROOTFS/etc/apt/sources.list.d/
 
 # update
+lxc-attach -n $MACH -- apt-key adv --recv-keys --keyserver \
+    keyserver.ubuntu.com 0xcbcb082a1bb943db
 lxc-attach -n $MACH -- apt-get update
 lxc-attach -n $MACH -- apt-get -y dist-upgrade
 lxc-attach -n $MACH -- apt-get autoclean
@@ -91,7 +94,7 @@ lxc-attach -n $MACH -- \
     "export DEBIAN_FRONTEND=noninteractive
      apt-get install -y iputils-ping
      apt-get install -y apt-transport-https
-     apt-get install -y mariadb-server
+     apt-get install -y mariadb-server-10.2
      apt-get install -y nginx-extras ssl-cert ca-certificates
      apt-get install -y -t jessie-backports certbot"
 lxc-attach -n $MACH -- \
