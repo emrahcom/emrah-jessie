@@ -132,7 +132,6 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
-cp etc/mysql/conf.d/ej.conf $ROOTFS/etc/mysql/conf.d/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy_buffer.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy.conf $ROOTFS/etc/nginx/conf.d/
