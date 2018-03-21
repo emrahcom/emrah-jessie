@@ -129,6 +129,7 @@ lxc-attach -n $MACH -- \
 # -----------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # -----------------------------------------------------------------------------
+cp etc/mysql/conf.d/ej.conf $ROOTFS/etc/mysql/conf.d/
 cp etc/nginx/conf.d/custom.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy_buffer.conf $ROOTFS/etc/nginx/conf.d/
 cp etc/nginx/conf.d/proxy.conf $ROOTFS/etc/nginx/conf.d/
@@ -153,6 +154,7 @@ iptables -t nat -A PREROUTING ! -d $HOST -i $PUBLIC_INTERFACE -p tcp --dport 443
 # -----------------------------------------------------------------------------
 # CONTAINER SERVICES
 # -----------------------------------------------------------------------------
+lxc-attach -n $MACH -- systemctl restart mysql.service
 lxc-attach -n $MACH -- systemctl restart gogs.service
 lxc-attach -n $MACH -- systemctl reload nginx.service
 
