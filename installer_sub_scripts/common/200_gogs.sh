@@ -100,8 +100,8 @@ lxc-attach -n $MACH -- \
 lxc-attach -n $MACH -- \
     zsh -c \
     "export DEBIAN_FRONTEND=noninteractive
-     wget -qO - https://deb.packager.io/key | apt-key add -
-     echo 'deb https://deb.packager.io/gh/pkgr/gogs jessie pkgr' \
+     wget -qO - https://dl.packager.io/srv/pkgr/gogs/key | apt-key add -
+     echo 'deb https://dl.packager.io/srv/deb/pkgr/gogs/pkgr/debian 8 main' \
          > /etc/apt/sources.list.d/gogs.list
      apt-get update
      apt-get install -y gogs --install-recommends"
