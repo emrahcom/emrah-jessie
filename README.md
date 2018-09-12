@@ -140,15 +140,15 @@ systemctl restart apache2.service
 
 ### Related links to ej-email
 
-- [Exim] (http://www.exim.org/)
-- [Dovecot] (http://dovecot.org/)
-- [Roundcube] (https://roundcube.net/)
-- [Vexim2] (https://github.com/vexim/vexim2)
-- [SpamAssassin] (https://spamassassin.apache.org/)
-- [ClamAV] (https://www.clamav.net/)
-- [MariaDB] (https://mariadb.org/)
-- [Let's Encrypt] (https://letsencrypt.org/)
-- [Certbot] (https://certbot.eff.org/)
+- [Exim](http://www.exim.org/)
+- [Dovecot](http://dovecot.org/)
+- [Roundcube](https://roundcube.net/)
+- [Vexim2](https://github.com/vexim/vexim2)
+- [SpamAssassin](https://spamassassin.apache.org/)
+- [ClamAV](https://www.clamav.net/)
+- [MariaDB](https://mariadb.org/)
+- [Let's Encrypt](https://letsencrypt.org/)
+- [Certbot](https://certbot.eff.org/)
 
 ---
 
@@ -218,12 +218,12 @@ systemctl restart nginx.service
 
 ### Related links to ej-gogs
 
-- [Gogs] (https://gogs.io/)
-- [Git] (https://git-scm.com/)
-- [Nginx] (http://nginx.org/)
-- [MariaDB] (https://mariadb.org/)
-- [Let's Encrypt] (https://letsencrypt.org/)
-- [Certbot] (https://certbot.eff.org/)
+- [Gogs](https://gogs.io/)
+- [Git](https://git-scm.com/)
+- [Nginx](http://nginx.org/)
+- [MariaDB](https://mariadb.org/)
+- [Let's Encrypt](https://letsencrypt.org/)
+- [Certbot](https://certbot.eff.org/)
 
 ---
 
@@ -263,14 +263,14 @@ bash ej ej-livestream
 
 ### Related links to ej-livestream
 
--  [nginx-rtmp-module] (https://github.com/arut/nginx-rtmp-module) Arut's repo
+-  [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module) Arut's repo
 
--  [nginx-rtmp-module] (https://github.com/sergey-dryabzhinsky/nginx-rtmp-module)
+-  [nginx-rtmp-module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module)
    Sergey's repo
 
--  [video.js] (https://github.com/videojs/video.js)
+-  [video.js](https://github.com/videojs/video.js)
 
--  [videojs-contrib-hls] (https://github.com/videojs/videojs-contrib-hls)
+-  [videojs-contrib-hls](https://github.com/videojs/videojs-contrib-hls)
 
 ---
 
@@ -298,9 +298,9 @@ bash ej ej-powerdns
 
 ### Related links to ej-powerdns
 
-- [PowerDNS] (https://github.com/PowerDNS/pdns)
-- [Poweradmin] (https://github.com/poweradmin/poweradmin)
-- [PostgreSQL] (https://www.postgresql.org/)
+- [PowerDNS](https://github.com/PowerDNS/pdns)
+- [Poweradmin](https://github.com/poweradmin/poweradmin)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ---
 
@@ -328,8 +328,8 @@ bash ej ej-waf
 
 ### Related links to ej-waf
 
-- [lua-resty-waf] (https://github.com/p0pr0ck5/lua-resty-waf)
-- [Nginx] (http://nginx.org/)
+- [lua-resty-waf](https://github.com/p0pr0ck5/lua-resty-waf)
+- [Nginx](http://nginx.org/)
 
 ---
 
@@ -349,5 +349,5 @@ Please, use one of the followings as a host:
 
 -  a Debian Jessie container
 
--  a physical machine with a fresh installed [Debian Jessie]
-   (https://www.debian.org/distrib/netinst)
+-  a physical machine with a fresh installed
+   [Debian Jessie](https://www.debian.org/distrib/netinst)
